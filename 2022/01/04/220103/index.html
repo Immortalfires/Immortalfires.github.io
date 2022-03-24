@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"immortalfires.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Java基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础(一)">
+<meta property="og:url" content="https://immortalfires.github.io/2022/01/04/220103/index.html">
+<meta property="og:site_name" content="Immortalfires">
+<meta property="og:description" content="Java基础知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-03T17:59:06.000Z">
+<meta property="article:modified_time" content="2022-01-10T01:34:42.167Z">
+<meta property="article:author" content="Au revoir">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://immortalfires.github.io/2022/01/04/220103/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java基础(一) | Immortalfires</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Immortalfires</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">菜鸟实录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/Immortalfires" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/04/220103/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Au revoir">
+      <meta itemprop="description" content="日月逝矣，时不我待">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Immortalfires">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础(一)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-03 17:59:06" itemprop="dateCreated datePublished" datetime="2022-01-03T17:59:06Z">2022-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-10 01:34:42" itemprop="dateModified" datetime="2022-01-10T01:34:42Z">2022-01-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Java基础知识复习</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Java基础知识。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java基础（一）"><a href="#Java基础（一）" class="headerlink" title="Java基础（一）"></a>Java基础（一）</h1><h3 id="1-“一次编写，到处运行“？"><a href="#1-“一次编写，到处运行“？" class="headerlink" title="1. “一次编写，到处运行“？"></a>1. “一次编写，到处运行“？</h3><p>答：JVM（java虚拟机）是实现Java跨平台的关键，充当桥梁。不同平台需要安装不同JVM，无需改动Java程序。</p>
+<pre class="mermaid">graph LR
+A[java源代码.java] -->|编译器| B[字节码.class]
+B -->|解释执行 via JVM| C[机器码]</pre>
+
+<h3 id="2-一个Java文件里可以有多个类吗（不含内部类）？"><a href="#2-一个Java文件里可以有多个类吗（不含内部类）？" class="headerlink" title="2. 一个Java文件里可以有多个类吗（不含内部类）？"></a>2. 一个Java文件里可以有多个类吗（不含内部类）？</h3><p>答：可以。只能有一个被public修饰的类，主类名必须与java文件名一致。</p>
+<h3 id="3-说一说你对Java访问权限的了解"><a href="#3-说一说你对Java访问权限的了解" class="headerlink" title="3.说一说你对Java访问权限的了解"></a>3.说一说你对Java访问权限的了解</h3><p>答：对成员变量/成员方法：</p>
+<blockquote>
+<p>private：该成员可以被该类内部成员访问；</p>
+<p>default：该成员可以被该类内部成员访问，也可以被同一包下其他类的成员访问</p>
+<p>protected：该成员可以被该类内部成员访问，也可以被同一包下其他类的成员访问，还可以被其子类访问</p>
+<p>public：任意包下，任意类的成员进行访问。</p>
+</blockquote>
+<p>对类：</p>
+<blockquote>
+<p>default：同一包下其他类访问</p>
+<p>public：任意包下任意类访问</p>
+</blockquote>
+<h3 id="4-介绍一下Java的数据类型"><a href="#4-介绍一下Java的数据类型" class="headerlink" title="4. 介绍一下Java的数据类型"></a>4. 介绍一下Java的数据类型</h3><p>答：基本数据类型：（前七种均可互相类型转换）</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">数据范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">1字节（8位） -2^7——2^7-1</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">2字节（16位） -2^15—— 2 ^15-1</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4字节（32位） -2^31—— 2 ^31-1</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">8字节（64位） -2^63—— 2 ^63-1x</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">-3.4*10^38 ~ 3.4*10^38。</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8字节（64位） -1.8*10^308 ~ 1.8*10^308。</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">2字节（16位）\u000 — \ufff。</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">不同JVM有不同实现机制</td>
+</tr>
+</tbody></table>
+<p>引用数据类型：（本质是指针）<em>要了解引用及引用对象存放的位置。</em></p>
+<blockquote>
+<p>数组、类、接口</p>
+</blockquote>
+<h3 id="5-int数据范围"><a href="#5-int数据范围" class="headerlink" title="5.  int数据范围"></a>5.  int数据范围</h3><p>答：4字节 32位 -2^31-2^31-1。</p>
+<h3 id="6-全局变量、局部变量"><a href="#6-全局变量、局部变量" class="headerlink" title="6. 全局变量、局部变量"></a>6. 全局变量、局部变量</h3><p>答：变量分为局部变量和成员变量。</p>
+<p>成员变量</p>
+<blockquote>
+<p>在类内定义；有默认初始值；static修饰的成员变量叫类变量，存储于方法区，生命周期与类相同；未被static修饰的成员变量叫实例变量，存储与对象所在的堆内存，生命周期跟对象相同。</p>
+</blockquote>
+<p>局部变量</p>
+<blockquote>
+<p>在方法里定义；无默认初始值；存储与栈内存，作用范围结束，空间自动释放。</p>
+</blockquote>
+<h3 id="7-实例变量默认值"><a href="#7-实例变量默认值" class="headerlink" title="7. 实例变量默认值"></a>7. 实例变量默认值</h3><p>答：</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">0L</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">0.0F</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">0.0</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">‘\u0000’</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">false</td>
+</tr>
+</tbody></table>
+<h3 id="8-为啥有包装类"><a href="#8-为啥有包装类" class="headerlink" title="8. 为啥有包装类"></a>8. 为啥有包装类</h3><p>答：Java是面对对象的语言，但8中基本数据类型不具备对象的特性，为了解决这个问题，Java为每个基本数据类型定义了一个对应的引用类型，就是包装类。</p>
+<h3 id="9-自动装拆箱的应用场景"><a href="#9-自动装拆箱的应用场景" class="headerlink" title="9. 自动装拆箱的应用场景"></a>9. 自动装拆箱的应用场景</h3><p>答：自动装箱：把一个基本类型的数据直接赋值给对应包装类型。</p>
+<p>自动拆箱：把一个包装类型的数据直接赋值给对应基本类型。</p>
+<p>例如：参数为包装类型，数据为基本类型，直接传入。</p>
+<h3 id="10-对Integer-Double如何判断相等"><a href="#10-对Integer-Double如何判断相等" class="headerlink" title="10. 对Integer/Double如何判断相等"></a>10. 对Integer/Double如何判断相等</h3><p>答：无法比较。数据类型不同不能用==。转为char比较时，浮点数带小数点，整数不带。Compare to只能对相同类型进行比较。</p>
+<h3 id="11-int和Integer有什么区别，二者在做-运算时会得到什么结果？"><a href="#11-int和Integer有什么区别，二者在做-运算时会得到什么结果？" class="headerlink" title="11. int和Integer有什么区别，二者在做==运算时会得到什么结果？"></a>11. int和Integer有什么区别，二者在做==运算时会得到什么结果？</h3><p>答：一个基本数据类型，一个包装类。比较时直接拆箱，==返回true，否则返回false。</p>
+<h3 id="12-面向对象是？"><a href="#12-面向对象是？" class="headerlink" title="12. 面向对象是？"></a>12. 面向对象是？</h3><p>答：它的基本思想是使用类、对象、继承、封装、消息等基本概念进行程序设计。尽可能运用人类的自然思维方式，将事物抽象地表示为系统中的类，作为系统的基本构成单元，这使得软件系统的组件可以直接映像到客观世界，并保持客观世界中事物及其相互关系的本来面貌。</p>
+<h3 id="13-它的三大特征是？"><a href="#13-它的三大特征是？" class="headerlink" title="13. 它的三大特征是？"></a>13. 它的三大特征是？</h3><p>答：封装、继承、多态。封装指的是将对象的实现细节隐藏起来，然后通过一些公用方法来暴露该对象的功能；继承是面向对象实现软件复用的重要手段，当子类继承父类后，子类作为一种特殊的父类，将直接获得父类的属性和方法；多态指的是子类对象可以直接赋给父类变量，但运行时依然表现出子类的行为特征，这意味着同一个类型的对象在执行同一个方法时，可能表现出多种行为特征。</p>
+<h3 id="14-封装是什么？为什么要有？"><a href="#14-封装是什么？为什么要有？" class="headerlink" title="14. 封装是什么？为什么要有？"></a>14. 封装是什么？为什么要有？</h3><p>答：将对象的状态信息隐藏在对象内部，使得外部无法进行直接操作和修改。</p>
+<p>可以实现以下目的：</p>
+<ul>
+<li>隐藏类的实现细节；</li>
+<li>让使用者只能通过事先预定的方法来访问数据，从而可以在该方法里加入控制逻辑，限制对成员变量的不合理访问；</li>
+<li>可进行数据检查，从而有利于保证对象信息的完整性；</li>
+<li>便于修改，提高代码的可维护性。</li>
+</ul>
+<h3 id="15-多态是什么？"><a href="#15-多态是什么？" class="headerlink" title="15. 多态是什么？"></a>15. 多态是什么？</h3><p>答：即向上转型。Java允许把一个子类对象直接赋给一个父类引用变量，无须任何类型转换，由系统自动完成。</p>
+<p>当把一个子类对象直接赋给父类引用变量时，例如 <code>BaseClass obj = new SubClass();</code>，这个obj引用变量的编译时类型是BaseClass，而运行时类型是SubClass，当运行时调用该引用变量的方法时，其方法行为总是表现出子类方法的行为特征，而不是父类方法的行为特征，这就可能出现：相同类型的变量、调用同一个方法时呈现出多种不同的行为特征，这就是多态。</p>
+<h3 id="16-Java中的多态是怎么实现的？"><a href="#16-Java中的多态是怎么实现的？" class="headerlink" title="16. Java中的多态是怎么实现的？"></a>16. Java中的多态是怎么实现的？</h3><p>答：将参数设为父类型，传参时可以传入父类型的某个字类型的实例，实现多态。</p>
+<h3 id="17-为何只能单继承？"><a href="#17-为何只能单继承？" class="headerlink" title="17. 为何只能单继承？"></a>17. 为何只能单继承？</h3><p>答：Java中一个类只能有一个直接父类，而不能<strong>直接</strong>继承多个父类，但可以有任意多个间接父类。因为若两个父类中包含相同的方法时，子类在调用该方法或重写该方法时就会迷惑。</p>
+<h3 id="18-重写和重载的区别？"><a href="#18-重写和重载的区别？" class="headerlink" title="18. 重写和重载的区别？"></a>18. 重写和重载的区别？</h3><p>答：重写：子类重写父类允许访问的方法（除private、final、static外）。”两同两小一大“，方法名，参数必须相同；异常范围、返回值类型要小于等于父类方法；修饰符要大于等于父类方法。</p>
+<p>重载：同一类中、父类子类间。方法名必须相同，其余可不同。</p>
+<h3 id="19-构造方法能否重写？"><a href="#19-构造方法能否重写？" class="headerlink" title="19. 构造方法能否重写？"></a>19. 构造方法能否重写？</h3><p>答：不能，构造方法必须与类名相同。如若子类重写父类构造方法，则子类中会有与类命不同的构造方法，矛盾。</p>
+<h3 id="20-Object类中的方法"><a href="#20-Object类中的方法" class="headerlink" title="20. Object类中的方法"></a>20. Object类中的方法</h3><p>答：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法名</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Class&lt;?&gt; getClass()</td>
+<td align="left">返回该对象的类</td>
+</tr>
+<tr>
+<td align="left">boolean equals(Object obj)</td>
+<td align="left">判断两个对象是否相等</td>
+</tr>
+<tr>
+<td align="left">int hashCode()</td>
+<td align="left">返回hashCode值</td>
+</tr>
+<tr>
+<td align="left">String toString()</td>
+<td align="left">返回字符串表示</td>
+</tr>
+</tbody></table>
+<h3 id="21-hashCode（）和equals（）的关系"><a href="#21-hashCode（）和equals（）的关系" class="headerlink" title="21. hashCode（）和equals（）的关系"></a>21. hashCode（）和equals（）的关系</h3><p>答：hashCode返回该对象的hashCode值，equals则是判断两对象是否相同。即hashCode相等，equals不一定为true；若equals若为true，hashCode一定相等。</p>
+<h3 id="22-为何要重写hashCode（）和equals（）"><a href="#22-为何要重写hashCode（）和equals（）" class="headerlink" title="22. 为何要重写hashCode（）和equals（）"></a>22. 为何要重写hashCode（）和equals（）</h3><p>答：默认的equals判断方法和我们实际需求往往不一致。hashCode通常与equals有联动关系，故需要一同重写。</p>
+<h3 id="23-和equals（）有何区别"><a href="#23-和equals（）有何区别" class="headerlink" title="23. ==和equals（）有何区别"></a>23. ==和equals（）有何区别</h3><p>答：==</p>
+<ul>
+<li><p>基本数据类型：  判断值</p>
+</li>
+<li><p>引用数据类型：  判断两个对象的内存地址是否相同</p>
+<p>equals</p>
+</li>
+<li><p>Object默认比较内存地址</p>
+</li>
+<li><p>重写后根据用户需求</p>
+</li>
+</ul>
+<h3 id="24-String方法"><a href="#24-String方法" class="headerlink" title="24. String方法"></a>24. String方法</h3><p>答：**<font color=red>可以看看部分方法的源码</font>**</p>
+<ul>
+<li>String[] split(String regex)：以指定的规则将此字符串分割成数组；</li>
+<li>String trim()：删除字符串前导和后置的空格；</li>
+<li>int indexOf(String str)：返回子串在此字符串首次出现的索引；</li>
+<li>int lastIndexOf(String str)：返回子串在此字符串最后出现的索引；</li>
+<li>boolean startsWith(String prefix)：判断此字符串是否以指定的前缀开头；</li>
+<li>boolean endsWith(String suffix)：判断此字符串是否以指定的后缀结尾；</li>
+<li>String toUpperCase()：将此字符串中所有的字符大写；</li>
+<li>String toLowerCase()：将此字符串中所有的字符小写；</li>
+<li>String replaceFirst(String regex, String replacement)：用指定字符串替换第一个匹配的子串；</li>
+<li>String replaceAll(String regex, String replacement)：用指定字符串替换所有的匹配的子串。</li>
+</ul>
+<h3 id="25-String能否被继承？"><a href="#25-String能否被继承？" class="headerlink" title="25. String能否被继承？"></a>25. String能否被继承？</h3><p>答：不能，由final修饰，是个不变类。</p>
+<h3 id="26-String和StringBuffer区别？"><a href="#26-String和StringBuffer区别？" class="headerlink" title="26. String和StringBuffer区别？"></a>26. String和StringBuffer区别？</h3><p>答：String：不变类，一旦被创建，不可改变，直至被销毁。</p>
+<p>StringBuffer：其对象代表一个字符序列可变的字符串，可使用toString转为String对象。</p>
+<h3 id="27-StringBuffer和StringBuilder区别？"><a href="#27-StringBuffer和StringBuilder区别？" class="headerlink" title="27. StringBuffer和StringBuilder区别？"></a>27. StringBuffer和StringBuilder区别？</h3><p>答：其对象均代表一个字符序列可变的字符串，但StringBuffer是线程安全的，StringBuilder时非线程安全的，性能略高。</p>
+<h3 id="28-创建字符串时，推荐new还是”“？"><a href="#28-创建字符串时，推荐new还是”“？" class="headerlink" title="28. 创建字符串时，推荐new还是”“？"></a>28. 创建字符串时，推荐new还是”“？</h3><p>答：”“创建时，JVM会用常量池来管理这个字符串；new会创建对象，JVM会先使用常量池来管理直接量，再调用String类的构造器来创建一个新的String对象，新创建的String对象被保存在堆内存中。</p>
+<h3 id="29-对字符串拼接的理解"><a href="#29-对字符串拼接的理解" class="headerlink" title="29. 对字符串拼接的理解"></a>29. 对字符串拼接的理解</h3><p>答：‘+’适用于两者均为直接量、StringBuilder适用于字符串包含变量且不要求线程安全、String Buffer适用于字符串包含变量且要求线程安全、String.concat适用于包含变量的2个字符串拼接。</p>
+<h3 id="30-字符串相加的底层如何实现"><a href="#30-字符串相加的底层如何实现" class="headerlink" title="30. 字符串相加的底层如何实现"></a>30. 字符串相加的底层如何实现</h3><p>答：若为直接量，则编译器会直接优化为一个完整的字符串。若包含变量，则编译器会使用StringBuilder进行优化，自动创建StringBuilder实例并调用append方法。</p>
+<h3 id="31-String-a-“abc”-，说一下这个过程会创建什么，放在哪里？"><a href="#31-String-a-“abc”-，说一下这个过程会创建什么，放在哪里？" class="headerlink" title="31. String a = “abc”; ，说一下这个过程会创建什么，放在哪里？"></a>31. String a = “abc”; ，说一下这个过程会创建什么，放在哪里？</h3><p>答：JVM使用常量池管理字符串直接量。执行过程：西安检查常量池中是否已经存在”abc“，若没有则存入常量池；若有，则复用，引用赋值给变量a。</p>
+<h3 id="32-new-String-“abc”-是去了哪里，仅仅是在堆里面吗？"><a href="#32-new-String-“abc”-是去了哪里，仅仅是在堆里面吗？" class="headerlink" title="32. new String(“abc”) 是去了哪里，仅仅是在堆里面吗？"></a>32. new String(“abc”) 是去了哪里，仅仅是在堆里面吗？</h3><p>答：先将abc存入常量池，再创建String对象，保存在堆内存里，然后堆中对象数据再指向常量池中直接量。</p>
+<h3 id="33-接口和抽象类有什么区别？"><a href="#33-接口和抽象类有什么区别？" class="headerlink" title="33. 接口和抽象类有什么区别？"></a>33. 接口和抽象类有什么区别？</h3><p>答：接口是一种规范，规定能够调用哪些服务，该如何调用。抽象类体现了一种模板式设计，可以作为多个子类的抽象子类。</p>
+<p>接口中只能包含抽象方法、静态方法、默认方法和私有方法，只能定义静态变量，不能定义普通成员变量，不包含构造器，不包含初始化块，可以实现多继承，即一个类可以直接实现多个接口。抽象类可以包含普通法，可以定义静态变量、普通成员变量，可以包含构造器、初始化块。</p>
+<p>二者均无法被实例化，只能被实现和继承。他们都可以包含抽象方法，而其子类都必须实现这些抽象方法。</p>
+<h3 id="34-接口中可以有构造函数吗？"><a href="#34-接口中可以有构造函数吗？" class="headerlink" title="34. 接口中可以有构造函数吗？"></a>34. 接口中可以有构造函数吗？</h3><p>答：不可以。 参看33</p>
+<h3 id="35-谈谈你对面向接口编程的理解"><a href="#35-谈谈你对面向接口编程的理解" class="headerlink" title="35. 谈谈你对面向接口编程的理解"></a>35. 谈谈你对面向接口编程的理解</h3><p>答：可以降低耦合，提高系统可扩展性和可维护性。</p>
+<h3 id="36-遇到过异常吗，如何处理"><a href="#36-遇到过异常吗，如何处理" class="headerlink" title="36. 遇到过异常吗，如何处理"></a>36. 遇到过异常吗，如何处理</h3><p>答：捕获异常（try catch）、处理异常、回收资源</p>
+<h3 id="37-说一说Java的异常机制"><a href="#37-说一说Java的异常机制" class="headerlink" title="37. 说一说Java的异常机制"></a>37. 说一说Java的异常机制</h3><p>答：处理异常的语句有try、catch、finally。try负责包裹业务代码，catch负责捕获和处理异常，finally用于回收资源。</p>
+<p>当出现异常，系统会创建一个异常对象，由JVM需寻找可以处理该异常的catch块，并将异常对象交由它处理。除此之外，还可以使用throw主动抛出异常，交由JVM处理。而异常机制会逐层向外传递，直到main方法，则JVM终止程序，打印异常跟踪栈的信息。</p>
+<h3 id="38-Java的异常接口"><a href="#38-Java的异常接口" class="headerlink" title="38. Java的异常接口"></a>38. Java的异常接口</h3><p>答：Throwable是顶层父类，直接子类分别是Error、Exception。</p>
+<p>Error是错误，一般与虚拟机相关，无需使用catch捕获，无需抛出</p>
+<p>Exception是异常，被分为Checked异常、Runtime异常。RuntimeException及其子类的实例被称为Runtime异常，其余都是Checked异常。Checked异常必须被显式处理，否则编译就会发生错误。Runtime异常则无需显式声明抛出，如需捕获，也可使用try catch实现。</p>
+<h3 id="39-finally是无条件执行吗？"><a href="#39-finally是无条件执行吗？" class="headerlink" title="39. finally是无条件执行吗？"></a>39. finally是无条件执行吗？</h3><p>答：是，不论什么情况，finally总是被执行。除非在try…catch块中使用System.exit(1)直接退出执行。</p>
+<h3 id="40-在finally中return会发生什么？"><a href="#40-在finally中return会发生什么？" class="headerlink" title="40. 在finally中return会发生什么？"></a>40. 在finally中return会发生什么？</h3><p>答：finally中一般不要使用是方法终止的语句，如return、throw等，使用后会使try catch中的return、throw失效。因为在try catch块中遇到return、throw不会立刻执行，而是去找异常处理流程中是否包括finally块，若没有，则立刻执行终止方法。否则要先执行finally中的语句。</p>
+<h3 id="41-对static关键字的理解"><a href="#41-对static关键字的理解" class="headerlink" title="41. 对static关键字的理解"></a>41. 对static关键字的理解</h3><p>答：可用于修饰类中的成员变量、方法、初始化块、内部类（接口、枚举），被其修饰的成员就是类成员，它属于类，并不属于单个对象。类成员不能访问实例成员。</p>
+<h3 id="42-static修饰的类能不能被继承"><a href="#42-static修饰的类能不能被继承" class="headerlink" title="42. static修饰的类能不能被继承"></a>42. static修饰的类能不能被继承</h3><p>答：可以。可用来修饰内部类，成为静态内部类。</p>
+<h3 id="43-static和final区别"><a href="#43-static和final区别" class="headerlink" title="43. static和final区别"></a>43. static和final区别</h3><p>答：static可以修饰成员变量、方法、初始化块、内部类</p>
+<p>类变量：属于类，存储在方法区，并不存储在堆中，建议通过类名访问。</p>
+<p>类方法：属于类，建议通过类名访问。</p>
+<p>静态块：类加载时被隐式调用，之后不会被调用</p>
+<p>静态内部类：它内部包含静态和非静态成员。它不能访问外部类的实例成员，只能访问外部类的静态成员。</p>
+<p>final可以修饰类、变量、方法</p>
+<p>final类：不可被继承</p>
+<p>final变量：一旦获得初始值，不可被修改</p>
+<p>final方法：不可被重写</p>
+<h3 id="44-对泛型的理解"><a href="#44-对泛型的理解" class="headerlink" title="44. 对泛型的理解"></a>44. 对泛型的理解</h3><p>答：&lt;T&gt;，Java中的泛型是假泛型，赋值时泛型信息其实会被擦除。</p>
+<p>泛型类：public class xxx &lt;T&gt;</p>
+<p>泛型接口：public interface Generator &lt;T&gt;</p>
+<p>泛型方法：public static &lt;T&gt; void xxx</p>
+<h3 id="45-泛型擦除是什么"><a href="#45-泛型擦除是什么" class="headerlink" title="45. 泛型擦除是什么"></a>45. 泛型擦除是什么</h3><p>答：当把具有泛型信息的对象赋值给没有泛型信息的变量时，&lt;&gt;中的所有信息都会被擦除。</p>
+<h3 id="46-List-lt-super-T-gt-和List-lt-extends-T-gt-有什么区别"><a href="#46-List-lt-super-T-gt-和List-lt-extends-T-gt-有什么区别" class="headerlink" title="46. List&lt;? super T&gt;和List&lt;? extends T&gt;有什么区别?"></a>46. List&lt;? super T&gt;和List&lt;? extends T&gt;有什么区别?</h3><p>答：？是类型通配符，List&lt;?&gt;代表元素类型未知的List</p>
+<p>List&lt;? super T&gt; 代表设置？的下限，即必须是T的父类</p>
+<p>List&lt;? extends T&gt;代表设置？的上限，必须是T的字类。</p>
+<h3 id="47-Java反射机制"><a href="#47-Java反射机制" class="headerlink" title="47. Java反射机制"></a>47. Java反射机制</h3><p>答：反射使得运行中的Java程序可以获取自身信息，可以操作类或对象的内部属性。<strong>JVM在运行时才动态加载类/调用方法，访问属性，无需事先知道运行对象是谁。</strong></p>
+<ul>
+<li>获得Class对象</li>
+<li>判断某个对象是否为某个类的实例，还可访问成员</li>
+<li>创建实例</li>
+</ul>
+<h3 id="48-Java反射在实际项目中有哪些应用场景？"><a href="#48-Java反射在实际项目中有哪些应用场景？" class="headerlink" title="48. Java反射在实际项目中有哪些应用场景？"></a>48. Java反射在实际项目中有哪些应用场景？</h3><p>答：使用JDBC，使用反射加载驱动；框架配置是解析出的类是字符串，需要利用反射机制实例化；AOP的实现方案是在程序运行时创建目标对象的代理类，必须由反射机制实现。</p>
+<h3 id="49-说一说Java的四种引用方式"><a href="#49-说一说Java的四种引用方式" class="headerlink" title="49. 说一说Java的四种引用方式"></a>49. 说一说Java的四种引用方式</h3><p>答：包括强引用、软引用、弱引用、虚引用。目的在于让程序员决定某些对象的生命周期，并且有利于JVM进行gc。</p>
+<p>强引用：创建对象并赋值给引用变量，永远不会被垃圾回收</p>
+<p>类似<code> String str = &#39;abc&#39;</code>就是强引用</p>
+<p>软引用：常用于内存敏感的程序里，只要内存足够，便不会被回收；一旦内存空间不足，就会被回收。</p>
+<p>用<code>SoftReference</code>表示软引用</p>
+<p>弱引用：相比软引用，级别更低，只要JVM进行垃圾回收，无论内存是否充足，都会被回收。</p>
+<p>用<code>WeakReference</code>表示弱引用</p>
+<p>虚引用：类似于完全没有引用，用于跟踪对象被垃圾回收的状态，必须和引用队列联合使用。</p>
+<p>用<code>PhantomReference</code>表示软引用</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Au revoir
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://immortalfires.github.io/2022/01/04/220103/" title="Java基础(一)">https://immortalfires.github.io/2022/01/04/220103/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/02/220102/" rel="prev" title="二分法查找">
+      <i class="fa fa-chevron-left"></i> 二分法查找
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/05/220104/" rel="next" title="Java基础(二)">
+      Java基础(二) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-text">Java基础（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E2%80%9C%E4%B8%80%E6%AC%A1%E7%BC%96%E5%86%99%EF%BC%8C%E5%88%B0%E5%A4%84%E8%BF%90%E8%A1%8C%E2%80%9C%EF%BC%9F"><span class="nav-text">1. “一次编写，到处运行“？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%80%E4%B8%AAJava%E6%96%87%E4%BB%B6%E9%87%8C%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%90%97%EF%BC%88%E4%B8%8D%E5%90%AB%E5%86%85%E9%83%A8%E7%B1%BB%EF%BC%89%EF%BC%9F"><span class="nav-text">2. 一个Java文件里可以有多个类吗（不含内部类）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AF%B4%E4%B8%80%E8%AF%B4%E4%BD%A0%E5%AF%B9Java%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E7%9A%84%E4%BA%86%E8%A7%A3"><span class="nav-text">3.说一说你对Java访问权限的了解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BJava%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">4. 介绍一下Java的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-int%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-text">5.  int数据范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-text">6. 全局变量、局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">7. 实例变量默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%B8%BA%E5%95%A5%E6%9C%89%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="nav-text">8. 为啥有包装类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E8%87%AA%E5%8A%A8%E8%A3%85%E6%8B%86%E7%AE%B1%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">9. 自动装拆箱的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%AF%B9Integer-Double%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%9B%B8%E7%AD%89"><span class="nav-text">10. 对Integer&#x2F;Double如何判断相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-int%E5%92%8CInteger%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BA%8C%E8%80%85%E5%9C%A8%E5%81%9A-%E8%BF%90%E7%AE%97%E6%97%B6%E4%BC%9A%E5%BE%97%E5%88%B0%E4%BB%80%E4%B9%88%E7%BB%93%E6%9E%9C%EF%BC%9F"><span class="nav-text">11. int和Integer有什么区别，二者在做&#x3D;&#x3D;运算时会得到什么结果？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%EF%BC%9F"><span class="nav-text">12. 面向对象是？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%AE%83%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81%E6%98%AF%EF%BC%9F"><span class="nav-text">13. 它的三大特征是？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%B0%81%E8%A3%85%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%EF%BC%9F"><span class="nav-text">14. 封装是什么？为什么要有？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E5%A4%9A%E6%80%81%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">15. 多态是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-Java%E4%B8%AD%E7%9A%84%E5%A4%9A%E6%80%81%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="nav-text">16. Java中的多态是怎么实现的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E4%B8%BA%E4%BD%95%E5%8F%AA%E8%83%BD%E5%8D%95%E7%BB%A7%E6%89%BF%EF%BC%9F"><span class="nav-text">17. 为何只能单继承？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">18. 重写和重载的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E8%83%BD%E5%90%A6%E9%87%8D%E5%86%99%EF%BC%9F"><span class="nav-text">19. 构造方法能否重写？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Object%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">20. Object类中的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-hashCode%EF%BC%88%EF%BC%89%E5%92%8Cequals%EF%BC%88%EF%BC%89%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">21. hashCode（）和equals（）的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E4%B8%BA%E4%BD%95%E8%A6%81%E9%87%8D%E5%86%99hashCode%EF%BC%88%EF%BC%89%E5%92%8Cequals%EF%BC%88%EF%BC%89"><span class="nav-text">22. 为何要重写hashCode（）和equals（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="nav-text">23. &#x3D;&#x3D;和equals（）有何区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-String%E6%96%B9%E6%B3%95"><span class="nav-text">24. String方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-String%E8%83%BD%E5%90%A6%E8%A2%AB%E7%BB%A7%E6%89%BF%EF%BC%9F"><span class="nav-text">25. String能否被继承？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-String%E5%92%8CStringBuffer%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">26. String和StringBuffer区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-StringBuffer%E5%92%8CStringBuilder%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">27. StringBuffer和StringBuilder区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%EF%BC%8C%E6%8E%A8%E8%8D%90new%E8%BF%98%E6%98%AF%E2%80%9D%E2%80%9C%EF%BC%9F"><span class="nav-text">28. 创建字符串时，推荐new还是”“？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">29. 对字符串拼接的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0%E7%9A%84%E5%BA%95%E5%B1%82%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-text">30. 字符串相加的底层如何实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-String-a-%E2%80%9Cabc%E2%80%9D-%EF%BC%8C%E8%AF%B4%E4%B8%80%E4%B8%8B%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%BC%9A%E5%88%9B%E5%BB%BA%E4%BB%80%E4%B9%88%EF%BC%8C%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="nav-text">31. String a &#x3D; “abc”; ，说一下这个过程会创建什么，放在哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-new-String-%E2%80%9Cabc%E2%80%9D-%E6%98%AF%E5%8E%BB%E4%BA%86%E5%93%AA%E9%87%8C%EF%BC%8C%E4%BB%85%E4%BB%85%E6%98%AF%E5%9C%A8%E5%A0%86%E9%87%8C%E9%9D%A2%E5%90%97%EF%BC%9F"><span class="nav-text">32. new String(“abc”) 是去了哪里，仅仅是在堆里面吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">33. 接口和抽象类有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E6%8E%A5%E5%8F%A3%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%9C%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%90%97%EF%BC%9F"><span class="nav-text">34. 接口中可以有构造函数吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">35. 谈谈你对面向接口编程的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-%E9%81%87%E5%88%B0%E8%BF%87%E5%BC%82%E5%B8%B8%E5%90%97%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86"><span class="nav-text">36. 遇到过异常吗，如何处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37-%E8%AF%B4%E4%B8%80%E8%AF%B4Java%E7%9A%84%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6"><span class="nav-text">37. 说一说Java的异常机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-Java%E7%9A%84%E5%BC%82%E5%B8%B8%E6%8E%A5%E5%8F%A3"><span class="nav-text">38. Java的异常接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-finally%E6%98%AF%E6%97%A0%E6%9D%A1%E4%BB%B6%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F"><span class="nav-text">39. finally是无条件执行吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-%E5%9C%A8finally%E4%B8%ADreturn%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">40. 在finally中return会发生什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E5%AF%B9static%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">41. 对static关键字的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-static%E4%BF%AE%E9%A5%B0%E7%9A%84%E7%B1%BB%E8%83%BD%E4%B8%8D%E8%83%BD%E8%A2%AB%E7%BB%A7%E6%89%BF"><span class="nav-text">42. static修饰的类能不能被继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-static%E5%92%8Cfinal%E5%8C%BA%E5%88%AB"><span class="nav-text">43. static和final区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#44-%E5%AF%B9%E6%B3%9B%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">44. 对泛型的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#45-%E6%B3%9B%E5%9E%8B%E6%93%A6%E9%99%A4%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">45. 泛型擦除是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-List-lt-super-T-gt-%E5%92%8CList-lt-extends-T-gt-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-text">46. List&lt;? super T&gt;和List&lt;? extends T&gt;有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#47-Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="nav-text">47. Java反射机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#48-Java%E5%8F%8D%E5%B0%84%E5%9C%A8%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-text">48. Java反射在实际项目中有哪些应用场景？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#49-%E8%AF%B4%E4%B8%80%E8%AF%B4Java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">49. 说一说Java的四种引用方式</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Au revoir"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Au revoir</p>
+  <div class="site-description" itemprop="description">日月逝矣，时不我待</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Immortalfires" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Immortalfires" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_43598179" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43598179" rel="noopener" target="_blank"><i class="fab fa-superpowers fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Au revoir</span>
+</div>
+
+
+  <script src='https://unpkg.com/mermaid@/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

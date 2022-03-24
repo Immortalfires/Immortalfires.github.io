@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"immortalfires.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Redis相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="https://immortalfires.github.io/2022/03/22/220322/index.html">
+<meta property="og:site_name" content="Immortalfires">
+<meta property="og:description" content="Redis相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://immortalfires.github.io/images/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png">
+<meta property="article:published_time" content="2022-03-22T10:14:10.000Z">
+<meta property="article:modified_time" content="2022-03-24T02:54:53.245Z">
+<meta property="article:author" content="Au revoir">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://immortalfires.github.io/images/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png">
+
+<link rel="canonical" href="https://immortalfires.github.io/2022/03/22/220322/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Redis | Immortalfires</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Immortalfires</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">菜鸟实录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/Immortalfires" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/22/220322/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Au revoir">
+      <meta itemprop="description" content="日月逝矣，时不我待">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Immortalfires">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-22 10:14:10" itemprop="dateCreated datePublished" datetime="2022-03-22T10:14:10Z">2022-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-24 02:54:53" itemprop="dateModified" datetime="2022-03-24T02:54:53Z">2022-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Redis相关</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><blockquote>
+<p>Redis是NoSQL数据库，使用C语言开发，常常应用于缓存、分布式锁、消息队列，支持事务、持久化、Lua脚本、多种集群方案。</p>
+</blockquote>
+<h2 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h2><p><a target="_blank" rel="noopener" href="https://redis.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-1-strings-in-redis/">可以看这个，Redis官网的文档</a></p>
+<p>官网上并没有提供redis的windows版本，github有个大佬提供了，但可以试试这个官方提供的<a target="_blank" rel="noopener" href="https://try.redis.io/">在线redis</a></p>
+<p>将redis的存储单元看成一个盒子，下列类型都可作为值类型。</p>
+<ul>
+<li><p><code>String</code>:key和type位于盒子上方，value在盒子里面</p>
+<blockquote>
+<p>对整个字符串或者字符串的其中一部分执行操作；对整数和浮点数执行自增或者自减操作；</p>
+<p>可以用来存储Byte、Integer、Floating-point类型的值，不能超过512MB</p>
+</blockquote>
+<p>它是一种简单动态字符串（SDS），通过预分配冗余空间的方式来减少内存的频繁分配。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">字符串操作</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> SET this:name youKnow</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> GET this:name 获取key所对应的值</span></span><br><span class="line">&quot;youKnow&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> exists this:name 判断key是否存在</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> exists this:na</span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> strlen this:name key所存储的字符串值的长度</span></span><br><span class="line">(integer) 7</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> del this:name 删除key所对应的值</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> exists this:name</span> </span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> get this:name</span></span><br><span class="line">(nil)</span><br><span class="line"><span class="meta">#</span><span class="bash">批量设置</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mset key1 val1 key2 val2</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mget key1 key2</span></span><br><span class="line">1) &quot;val1&quot;</span><br><span class="line">2) &quot;val2&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash">计数器 不能超过Long.Max，不能低于Long.MIN</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> INCR val</span></span><br><span class="line">(integer) 11</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> INCR val</span></span><br><span class="line">(integer) 12</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> DEL val</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> INCR val</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> INCRBY val 100</span></span><br><span class="line">(integer) 101</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> DECR val</span></span><br><span class="line">(integer) 100</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> DECRBY val 10</span></span><br><span class="line">(integer) 90</span><br><span class="line"><span class="meta">#</span><span class="bash">过期</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">set</span> key:lock <span class="string">&quot;dying&quot;</span></span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> expire key:lock 60 <span class="comment">#设置60s后过期</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ttl key:lock <span class="comment">#查看时间</span></span></span><br><span class="line">(integer) 45</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> persist key:lock <span class="comment"># 取消过期</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ttl key:lock <span class="comment">#-1永不过期 -2已过期</span></span></span><br><span class="line">(integer) -1</span><br></pre></td></tr></table></figure></li>
+<li><p><code>List</code>:key和type位于盒子上方，list of valuse在盒子里</p>
+<blockquote>
+<p>可以从List两端压入或弹出元素，保留范围内元素</p>
+</blockquote>
+<p>List的实现为一个双向链表。支持反向查找和遍历</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> rpush people <span class="string">&quot;A&quot;</span>  <span class="string">&quot;B&quot;</span> <span class="comment">#左push</span></span></span><br><span class="line">(integer) 2</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> lpush people <span class="string">&quot;C&quot;</span> <span class="string">&quot;D&quot;</span> <span class="string">&quot;E&quot;</span> <span class="comment">#右push</span></span></span><br><span class="line">(integer) 5</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> lpop people <span class="comment">#左弹出</span></span></span><br><span class="line">&quot;E&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> lrange people 0 5</span></span><br><span class="line">1) &quot;D&quot;</span><br><span class="line">2) &quot;C&quot;</span><br><span class="line">3) &quot;A&quot;</span><br><span class="line">4) &quot;B&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> lrange people 0 -1</span></span><br><span class="line">1) &quot;D&quot;</span><br><span class="line">2) &quot;C&quot;</span><br><span class="line">3) &quot;A&quot;</span><br><span class="line">4) &quot;B&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> llen people <span class="comment">#获取长度</span></span></span><br><span class="line">(integer) 4</span><br></pre></td></tr></table></figure></li>
+<li><p><code>Set</code>：key和type位于盒子上方，list of valuse在盒子里</p>
+<blockquote>
+<p>无序集合,元素仅出现一次</p>
+<p>添加、获取、移除元素，元素存在检查，获取所有</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> SADD str <span class="string">&quot;ab&quot;</span> <span class="string">&quot;cd&quot;</span> <span class="string">&quot;ef&quot;</span> <span class="comment">#添加元素</span></span></span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> SREM str <span class="string">&quot;ab&quot;</span> <span class="comment">#移除元素</span></span></span><br><span class="line">1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> smembers str <span class="comment">#获取全部</span></span></span><br><span class="line">1) &quot;cd&quot;</span><br><span class="line">2) &quot;ef&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> SISMEMBER str <span class="string">&quot;c&quot;</span> <span class="comment">#是否在set内</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> SADD str2 <span class="string">&quot;gh&quot;</span> <span class="string">&quot;ij&quot;</span></span> </span><br><span class="line">(integer) 2</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> SUNION str str2 <span class="comment">#联合两个set</span></span></span><br><span class="line">1) &quot;cd&quot;</span><br><span class="line">2) &quot;gh&quot;</span><br><span class="line">3) &quot;ij&quot;</span><br><span class="line">4) &quot;ef&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>Hash</code>：<code>key name</code>和type在盒子上方，key-value在盒子里</p>
+<blockquote>
+<p>无序散列表</p>
+<p>单独操作一个键值对，获取所有，元素存在检查</p>
+</blockquote>
+<p>类似JDK1.8之前的HashMap（数组+链表）hash是一个String类型field和value的映射表。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> hmset infoKey name <span class="string">&quot;here&quot;</span> desc <span class="string">&quot;loc&quot;</span> age <span class="string">&quot;10&quot;</span></span> </span><br><span class="line">OK</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hexists infoKey name <span class="comment">#是否存在该字段</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hget infoKey name <span class="comment">#获取字段值</span></span></span><br><span class="line">&quot;here&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hgetall infoKey <span class="comment">#获取所有键值对</span></span></span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;here&quot;</span><br><span class="line">3) &quot;desc&quot;</span><br><span class="line">4) &quot;loc&quot;</span><br><span class="line">5) &quot;age&quot;</span><br><span class="line">6) &quot;10&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hkeys infoKey <span class="comment">#获取所有键</span></span></span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;desc&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hvals infoKey <span class="comment">#获取所有值</span></span></span><br><span class="line">1) &quot;here&quot;</span><br><span class="line">2) &quot;loc&quot;</span><br><span class="line">3) &quot;10&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hset infoKey name <span class="string">&quot;there&quot;</span> <span class="comment">#修改值</span></span></span><br><span class="line">0</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> hget infoKey name <span class="comment">#获取修改后的值</span></span></span><br><span class="line">&quot;there&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>sorted set（zset）</code>: <code>key name</code>和type在盒子上方，key-value在盒子里</p>
+<blockquote>
+<p>有序集合</p>
+<p>操作单个元素，获取某一个区间内的元素，计算元素位置</p>
+</blockquote>
+<p>与set相比增加了一个权重参数score</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> ZADD hackers 1940 <span class="string">&quot;Alan Kay&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ZADD hackers 1906 <span class="string">&quot;Grace Hopper&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ZADD hackers 1953 <span class="string">&quot;Richard Stallman&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ZADD hackers 1916 <span class="string">&quot;Claude Shannon&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> zrange hackers 1 3 <span class="comment">#按权重排序输出</span></span></span><br><span class="line">1) &quot;Claude Shannon&quot;</span><br><span class="line">2) &quot;Alan Kay&quot;</span><br><span class="line">3) &quot;Richard Stallman&quot;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> zcard hackers <span class="comment">#查看元素数量</span></span></span><br><span class="line">4</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> zscore hackers <span class="string">&quot;Alan Kay&quot;</span> <span class="comment">#查看某个value的权重</span></span></span><br><span class="line">1940.0</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> zrevrange hackers 0 -1 <span class="comment">#逆序输出某个范围内的元素</span></span></span><br><span class="line">1) &quot;Richard Stallman&quot;</span><br><span class="line">2) &quot;Alan Kay&quot;</span><br><span class="line">3) &quot;Claude Shannon&quot;</span><br><span class="line">4) &quot;Grace Hopper&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>任何二进制序列均可作为Key值，空字符串也是有效的。</p>
+<h2 id="二、数据结构"><a href="#二、数据结构" class="headerlink" title="二、数据结构"></a>二、数据结构</h2><p><img data-src="/../../images/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png"></p>
+<p>如图所示</p>
+<h2 id="三、redis与Memcached"><a href="#三、redis与Memcached" class="headerlink" title="三、redis与Memcached"></a>三、redis与Memcached</h2><ol>
+<li><p>Memcached仅支持字符串类型，Redis支持五种数据类型；</p>
+</li>
+<li><p>Redis支持两种<strong>持久化</strong>，RDB快照和AOF日志，Memcached不支持持久化</p>
+</li>
+<li><p>Redis Cluster实现<strong>分布式</strong>的支持，Memcached不支持分布式</p>
+</li>
+<li><p>Redis可以将一些很久不用的value交换到磁盘，Memcached数据则会一直存在于内存中。Memcached将内存分割成特定长度的块来存储数据，用以解决内存碎片问题。</p>
+</li>
+</ol>
+<h2 id="四、数据淘汰策略"><a href="#四、数据淘汰策略" class="headerlink" title="四、数据淘汰策略"></a>四、数据淘汰策略</h2><p>当内存使用量超出时，使用数据淘汰策略</p>
+<table>
+<thead>
+<tr>
+<th align="center">策略</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">volatile-lru</td>
+<td align="center">从已设置过期时间的数据集中挑选最近最少使用的数据淘汰</td>
+</tr>
+<tr>
+<td align="center">volatile-ttl</td>
+<td align="center">从已设置过期时间的数据集中挑选将要过期的数据淘汰</td>
+</tr>
+<tr>
+<td align="center">volatile-random</td>
+<td align="center">从已设置过期时间的数据集中任意选择数据淘汰</td>
+</tr>
+<tr>
+<td align="center">allkeys-lru</td>
+<td align="center">从所有数据集中挑选最近最少使用的数据淘汰</td>
+</tr>
+<tr>
+<td align="center">allkeys-random</td>
+<td align="center">从所有数据集中任意选择数据进行淘汰</td>
+</tr>
+<tr>
+<td align="center">noeviction</td>
+<td align="center">禁止驱逐数据</td>
+</tr>
+</tbody></table>
+<p>为保证缓存命中率，保证缓存中数据均为热点数据，可以将内存最大使用量设置为热点数据占用的内存量，使用allkey-lru淘汰策略，将最近最少使用的数据淘汰。</p>
+<h2 id="五、持久化"><a href="#五、持久化" class="headerlink" title="五、持久化"></a>五、持久化</h2><p>redis提供两种方式进行持久化，RDB（将Redis在内存中的数据库记录写入磁盘）、AOF（append only file，将Redis操作日志以追加的方式写入文件）</p>
+<h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><pre class="mermaid">graph LR
+A[redis server] -->|fork子进程| B[child process]
+B -->|写入| C[RDB临时文件]</pre>
+
+<p>定时fork子进程，将其写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。</p>
+<p>优点：</p>
+<ol>
+<li>对文件备份很友好，灾难后恢复也很轻松，因为进行RDB持久化后，整个数据库将只包含一个文件；</li>
+<li>性能最大化，相比AOF，它的启动效率更高。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>当系统在定时持久化之前出现宕机，此时未来得及写入磁盘的数据都将丢失；</li>
+<li>当数据集较大时，整个服务器会停止服务几百ms。</li>
+</ol>
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><pre class="mermaid">graph LR;
+A(redis client)-->|发送写命令|B[redis server]
+B-->|同步写命令|C[AOF记录文件]</pre>
+
+<p>处理每一个写、删操作，查询操作并不会记录，以文本方式记录。</p>
+<p>优点：</p>
+<ol>
+<li><strong>更高的数据安全性</strong>，提供了三种同步策略，即每秒同步<code>everysec</code>、每修改同步<code>always</code>和不同步<code>no</code>。每秒同步的最差情况，当系统宕机时，这一秒钟内修改的数据将会丢失；每修改同步，可以将其视为同步持久化，但效率是最低的；</li>
+<li>采用追加模式，即使宕机也不会破坏日志文件，<code>redis-check-aof</code>可以解决宕机引发的数据一致性问题；</li>
+<li>如果日志过大，redis会自动启用rewrite机制，它会在append的时候，创建一个新的文件用于记录此期间有哪些修改命令被执行，可以更好地保证数据安全性；</li>
+<li>此日志文件也可用于数据重建。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>恢复速度慢；</li>
+<li>运行效率低；</li>
+</ol>
+<h2 id="六、事务"><a href="#六、事务" class="headerlink" title="六、事务"></a>六、事务</h2><p>redis的事务是<strong>非原子性</strong>的，不支持回滚；支持一次多个命令，均会被序列化入队，期间不会该去执行其他客户端的命令请求；没有隔离级别。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DISCARD 	#取消事务</span><br><span class="line">EXEC		#执行事务</span><br><span class="line">MULTI		#标记事务开始</span><br><span class="line">UNWATCH		#取消对key监视</span><br><span class="line">WATCH		#监视一个或多个key若key在事务执行前被改动，那么事务将会被打断。</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、事件"><a href="#七、事件" class="headerlink" title="七、事件"></a>七、事件</h2><p>Redis服务器是事件驱动程序，只关注网络IO和定时器，处理两类事件。</p>
+<h3 id="文件事件"><a href="#文件事件" class="headerlink" title="文件事件"></a>文件事件</h3><blockquote>
+<p>用于处理Redis服务器和客户端之间的网络IO</p>
+</blockquote>
+<p>服务器通过套接字与客户端通信，文件事件是对套接字操作的抽象。redis使用了I/O多路复用程序同时监听多个套接字，并将到达的时间传送给文件时间分派其，分派其会根据套接字产生的事件类型调用相应的事件处理器。</p>
+<blockquote>
+<ul>
+<li>监听套接字—-连接应答处理器</li>
+<li>客户端套接字—-命令请求处理器</li>
+<li>客户端套接字—-命令回复处理器</li>
+<li>主从服务器复制—复制处理器</li>
+</ul>
+</blockquote>
+<h3 id="时间事件"><a href="#时间事件" class="headerlink" title="时间事件"></a>时间事件</h3><blockquote>
+<p>Redis 服务器中的一些操作（比如serverCron函数）需要在给定的时间点执行，而时间事件就是处理这类定时操作的。</p>
+</blockquote>
+<p>事件由三个属性构成：</p>
+<ul>
+<li><p>id：服务器构建的全局唯一ID，递增</p>
+</li>
+<li><p>when：毫秒的UNIX时间戳，记录事件的到达时间</p>
+</li>
+<li><p>timeProc：时间事件处理器</p>
+</li>
+</ul>
+<p>分为两类</p>
+<ul>
+<li>定时事件：程序在指定的时间之内执行一次</li>
+<li>周期性事件：每隔指定时间就执行一次</li>
+</ul>
+<p>分类取决于时间事件处理器的返回值，<code>ae.h/AE_NOMORE</code>为定时事件，到达一次后被删除；返回整数值，为周期性事件，随后根据when更新。</p>
+<p>时间事件被保存在一个无需链表中，每次执行要遍历链表，查找已到达的时间事件，并调用相应的事件处理器。</p>
+<h3 id="事件的调度与执行"><a href="#事件的调度与执行" class="headerlink" title="事件的调度与执行"></a>事件的调度与执行</h3><p>由aeProcessEvents函数负责，置于一个循环里面，加上初始化和清理函数，就构成了 Redis 服务器的主函数</p>
+<h2 id="八、复制"><a href="#八、复制" class="headerlink" title="八、复制"></a>八、复制</h2><p>分布式系统中为了解决单点问题，将数据复制多个副本部署到其他机器，满足故障处理和负载均衡。<code>slaveof &#123;hostport&#125; &#123;postport&#125;</code>可以使得一个服务器成为另一个服务的从服务器，一从只能对一主，从节点也可以有从节点，从而实现嵌套。不支持主主复制。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/96191405">redis如何实现主从复制</a></p>
+<p>主从复制的开启，完全是在从节点发起的，主节点无需任何动作。</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><h4 id="连接建立"><a href="#连接建立" class="headerlink" title="连接建立"></a>连接建立</h4><ol>
+<li>从节点服务器需要使用<code>masterhost</code>和<code>masterport</code>存储主节点<code>ip</code>和<code>port</code>信息</li>
+<li>建立socket连接</li>
+<li>从节点向主节点ping，检查socket连接和主节点是否能处理请求</li>
+<li>身份验证通过后，发送从节点端口信息</li>
+</ol>
+<h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><p><strong>从节点向主节点发送<code>pysnc</code>命令</strong>，根据主从节点当前状态不同，可能是全量复制/部分复制。</p>
+<ol>
+<li><p>全量复制</p>
+<blockquote>
+<p>用于初次复制或其它部分无法复制</p>
+</blockquote>
+<ul>
+<li>经判断需要进行全量复制（如何判断看<code>runid</code>部分)</li>
+<li>主节点执行bgsave，在后台生成RDB文件，使用复制缓冲区记录从现在开始的所有写命令</li>
+<li>执行完成后，将RDB文件发送给从节点，从节点首先清除自己的旧数据，随后载入接收的RDB文件，更新数据库状态</li>
+<li>将缓冲区的写命令发给从节点，执行后将数据库更新为最新状态</li>
+<li>若从节点开启了AOF，会触发bgrewriteaof的执行，保证AOF始终是主节点的最新状态</li>
+</ul>
+</li>
+<li><p>部分复制</p>
+<blockquote>
+<p>用于网络中断等情况后的复制，只将中断期间主节点执行的写命令发送给从节点，更加高效。</p>
+</blockquote>
+<p><code>offset</code>（复制偏移量）代表主节点向从节点传递的字节数；</p>
+<p>复制挤压缓冲区是由主节点维护的、固定长度的的队列，开始于主节点有从节点，为了备份主节点最近发送给从节点的数据。</p>
+<p><code>runid</code>（服务器运行ID），每个redis节点在启动会自动生成一个随机ID，用于识别唯一一个Redis节点。初次复制时，主节点会将这个runid发送给从节点。恢复重连后，从节点会将runid发给主节点进行比较。若一致，主节点将尝试使用部分复制（能否用还要看offset和缓冲区）；若不一致，只能进行全量复制。</p>
+</li>
+</ol>
+<h4 id="命令传播"><a href="#命令传播" class="headerlink" title="命令传播"></a>命令传播</h4><p>主节点将自己执行的写命令发送给从节点，从结点接受命令并执行，从而保证数据一致性。</p>
+<h2 id="九、哨兵（sentinel）"><a href="#九、哨兵（sentinel）" class="headerlink" title="九、哨兵（sentinel）"></a>九、哨兵（sentinel）</h2><p>在复制的基础上，它实现了自动化的故障恢复和主节点的自动故障转移：在主服务器进入下线状态时，自动从从服务器中选举出新的主服务器。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Au revoir
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://immortalfires.github.io/2022/03/22/220322/" title="Redis">https://immortalfires.github.io/2022/03/22/220322/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/21/22032101/" rel="prev" title="剑指offer（九）">
+      <i class="fa fa-chevron-left"></i> 剑指offer（九）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/24/220324/" rel="next" title="操作系统高频问题总结">
+      操作系统高频问题总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis"><span class="nav-text">Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">一、数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">二、数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81redis%E4%B8%8EMemcached"><span class="nav-text">三、redis与Memcached</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="nav-text">四、数据淘汰策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">五、持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB"><span class="nav-text">RDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF"><span class="nav-text">AOF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BA%8B%E5%8A%A1"><span class="nav-text">六、事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E4%BA%8B%E4%BB%B6"><span class="nav-text">七、事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BA%8B%E4%BB%B6"><span class="nav-text">文件事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E4%BA%8B%E4%BB%B6"><span class="nav-text">时间事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%89%A7%E8%A1%8C"><span class="nav-text">事件的调度与执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A4%8D%E5%88%B6"><span class="nav-text">八、复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="nav-text">连接建立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="nav-text">数据同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E4%BC%A0%E6%92%AD"><span class="nav-text">命令传播</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%93%A8%E5%85%B5%EF%BC%88sentinel%EF%BC%89"><span class="nav-text">九、哨兵（sentinel）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Au revoir"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Au revoir</p>
+  <div class="site-description" itemprop="description">日月逝矣，时不我待</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Immortalfires" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Immortalfires" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_43598179" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43598179" rel="noopener" target="_blank"><i class="fab fa-superpowers fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Au revoir</span>
+</div>
+
+
+  <script src='https://unpkg.com/mermaid@/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

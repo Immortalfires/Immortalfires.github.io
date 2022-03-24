@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"immortalfires.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="看《自顶向下》的整理~~~可能后面还会看谢希仁的教材，《自顶向下》没讲到物理层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="https://immortalfires.github.io/2022/01/10/22011001/index.html">
+<meta property="og:site_name" content="Immortalfires">
+<meta property="og:description" content="看《自顶向下》的整理~~~可能后面还会看谢希仁的教材，《自顶向下》没讲到物理层">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://immortalfires.github.io/images/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE">
+<meta property="og:image" content="https://immortalfires.github.io/images/SMTP">
+<meta property="og:image" content="https://immortalfires.github.io/images/d4c3a4a1-0846-46ec-9cc3-eaddfca71254-1642406686409-1642406689150.jpg">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117215928936.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117221540147.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220118100642788.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/55dc4e84-573d-4c13-a765-52ed1dd251f9.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117171509715.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117211834313.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117212159479.png">
+<meta property="og:image" content="https://immortalfires.github.io/images/image-20220117212228160.png">
+<meta property="article:published_time" content="2022-01-10T09:51:09.000Z">
+<meta property="article:modified_time" content="2022-03-24T02:56:24.763Z">
+<meta property="article:author" content="Au revoir">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://immortalfires.github.io/images/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE">
+
+<link rel="canonical" href="https://immortalfires.github.io/2022/01/10/22011001/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机网络 | Immortalfires</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Immortalfires</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">菜鸟实录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/Immortalfires" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/10/22011001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Au revoir">
+      <meta itemprop="description" content="日月逝矣，时不我待">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Immortalfires">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-10 09:51:09" itemprop="dateCreated datePublished" datetime="2022-01-10T09:51:09Z">2022-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-24 02:56:24" itemprop="dateModified" datetime="2022-03-24T02:56:24Z">2022-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">看《自顶向下》的整理~~~可能后面还会看谢希仁的教材，《自顶向下》没讲到物理层</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><br>
+
+<h2 id="一、网络与因特网"><a href="#一、网络与因特网" class="headerlink" title="一、网络与因特网"></a>一、网络与因特网</h2><h3 id="两种交换"><a href="#两种交换" class="headerlink" title="两种交换"></a>两种交换</h3><p>通过网络链路和交换机移动数据两种方法：分组交换、电路交换。</p>
+<h4 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h4><p>多数分组交换机在链路输入端采用<strong>存储转发传输</strong>，是指交换机在向输出链路传输分组第一个比特时，必须接收到该分组的全体。在下图中（忽略传播时延），<em>L</em>表示分组长度，<em>R</em>表示链路传输速率。</p>
+<p>在L/R秒，分组交换机刚好接收到全部分组，2L/R秒，分组全部到达目的地。如不采用存储转发传输，总时延为L/R。类似地，如果有三个分组，总时延将为4L/R。</p>
+<blockquote>
+<p>由N条速率均为R的链路组成的路径（之间有N-1台交换机）：<code>d(时延)=NL/R</code></p>
+<p>P个分组经过N条链路序列的时延：<code>d(时延)=(P+N-1)L/R</code></p>
+</blockquote>
+<pre class="mermaid">graph LR;
+A[源]-->|分组1|B(分组交换机)
+B-->C[目的地]</pre>
+
+<p>交换机有多个链路与之相连，对于每个链路，交换机都有一个输出缓存来存储准备发向那条链路的分组。当到达的分组需要被传输到一个正在处理分组的链路时，就会被放在输出缓存中等待传输，这就是<strong>排队时延</strong>。它是变化的，取决于网络堵程度。当缓存被存满时，就会出现<strong>分组丢失（丢包）</strong>，到达分组/正在等待分组之一就会被丢弃。</p>
+<p>路由器用<strong>转发表</strong>来确定转发链路（映射目的地址）。</p>
+<h4 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h4><p>电路交换网络需要为端系统通信预留资源（电路），可通过频分复用（FDM）和时分复用（TDM）实现。FDM中，链路频谱由连接共享，每条连接专用一个频段。TDM中，时间被划分为固定区间的帧，每帧又被划分为固定数量的时隙，每个连接专用一个时隙用以传输数据。</p>
+<h4 id="分组交换与电路交换对比"><a href="#分组交换与电路交换对比" class="headerlink" title="分组交换与电路交换对比"></a>分组交换与电路交换对比</h4><p>分组交换提供了更好的带宽共享，比电路交换更简单，更有效，实现成本更低。但不适合实时服务（端到端时延不可预测）。电路交换有速率保证，但存在静默期，会造成资源浪费，建立连接较为复杂。但总体来说，分组交换性能要优于电路交换。</p>
+<br>
+
+<h3 id="分组交换网中的时延"><a href="#分组交换网中的时延" class="headerlink" title="分组交换网中的时延"></a>分组交换网中的时延</h3><p>时延中最为重要的有处理时延、排队时延、传输时延、传播时延，总体累加起来就是<strong>结点总时延</strong>。</p>
+<pre class="mermaid">graph LR;
+A[源A]-->B(路由器A)
+D[源B]-->B
+B-->C(路由器B)</pre>
+
+<p>分组从上游结点到达A时，A检查分组首部以决定分组的出链路，并将分组导向该出链路。当且仅当该链路没有传输且A的输出缓存（等待队列）中没有别的分组排在该分组之前，该分组才能被从这条链路上传输。否则，需要参与排队。</p>
+<ol>
+<li>处理时延：检查分组首部，导向出链路是处理时延的一部分，还包括检查比特级别的错误所需的时间。</li>
+<li>排队时延：在队列中等待传输的时间，取决于在它之前等待的分组数量。</li>
+<li>传输时延：L/R就是传输时延。表示将分组比特推向链路所需的时间。</li>
+<li>传播时延：从链路起点到路由器B的时间。<code>t=d/s </code>d表示距离，s表示链路传播速率。</li>
+</ol>
+<blockquote>
+<p>传输时延和传播时延很容易混淆。《计算机网络 自顶向下的方法》中用了高速公路收费站的例子来说明。</p>
+<p>将收费站视作路由器，两个收费站之间的公路视作链路，汽车视作比特。</p>
+<p>传输时延就是汽车从进收费站到出收费站所花费的时间，传播时延是汽车从一个收费站离开到进入另一个收费站所需的时间。</p>
+</blockquote>
+<p>对于总时延来说，不同部分时延起的作用，在不同情况下可能会发生很大的变化。</p>
+<br>
+
+<h3 id="丢包"><a href="#丢包" class="headerlink" title="丢包"></a>丢包</h3><p>到达的分组发现一个满的队列，由于没有地方存储这个分组，路由器将丢弃该分组，该分组将会丢失。丢失的分组将基于端到端的原则重传，确保所有的数据都被传送到目的地。</p>
+<p>分组丢失的份额随着流量强度增加而增加，当流量强度持续大于1时，就将出现丢包现象。</p>
+<br>
+
+<h3 id="端到端时延"><a href="#端到端时延" class="headerlink" title="端到端时延"></a>端到端时延</h3><blockquote>
+<p>前面一直在讨论结点时延，即单台路由器上的时延。假定此时源主机和目的主机之间有N-1台路由器，网络无拥塞。每台路由器上和源主机上的处理时延d<sub>proc</sub>，每台路由器和源主机的输出速率是<em>R</em> bps，每条链路的传播时延是d<sub>prop</sub>。d<sub>trans</sub>=L/R为传输时延。</p>
+</blockquote>
+<p>结点时延累加起来就得到了端到端时延d<sub>end-end</sub>=N(d<sub>proc</sub>+d<sub>trans</sub>+d<sub>prop</sub>)</p>
+<br>
+
+<h3 id="协议层次及其服务模型"><a href="#协议层次及其服务模型" class="headerlink" title="协议层次及其服务模型"></a>协议层次及其服务模型</h3><p>网络设计者以<strong>分层</strong>的方式组织协议以及实现这些协议的网络硬件和软件，每个协议属于这些层次之一，每层通过在该层执行某些动作或直接使用下层的服务来提供服务。</p>
+<blockquote>
+<p>分层的体系机构本身具有结构化和概念化的特点（在我看来类似于解耦，低耦合，高聚合）。对于每一层内部可以变动，只要其提供的供上层使用的服务保持不变，并使用来自下层的相同服务，就不会影响系统其他组件。</p>
+</blockquote>
+<p>协议层能够用软件、硬件或二者的结合来实现。HTTP、SMTP这样的应用层几乎总是在端系统中用软件实现的，对运输层也是如此。物理层和数据链路层通常实现在与给定链路相联系的网络接口卡中。网络层经常是硬件和软件实现的混合体。</p>
+<p>各层的所有协议被称作<strong>协议栈</strong>。</p>
+<h4 id="因特网协议栈"><a href="#因特网协议栈" class="headerlink" title="因特网协议栈"></a>因特网协议栈</h4><p>自顶向下是应用层、运输层、网络层、链路层、物理层。</p>
+<p><b><font color=DeepSkyBlue>应用层</font></b>：是网络应用程序和他们的应用层协议留存的地方。协议分布在多个端系统上，一个端系统中的应用程序使用协议与另一个端系统中的应用程序交换信息的分组，被称为报文。</p>
+<p><b><font color=DeepSkyBlue>运输层</font></b>：在应用程序端点中传送应用层报文。有两个运输层协议TCP和UDP。运输层分组称为报文段。</p>
+<blockquote>
+<p>TCP：提供保证传递，拥塞控制，流量控制</p>
+<p>UDP：无以上保证，不提供不必要服务，提供无连接服务</p>
+</blockquote>
+<p><b><font color=DeepSkyBlue>网络层</font></b>：分组被称为数据报，网络层负责将它从一台主机移动到另一台主机。运输层协议像网络层递交运输层报文段和目的地址。网络层包括IP协议。 </p>
+<p><b><font color=DeepSkyBlue>链路层</font></b>：网络层依靠链路层的服务将分组从一个结点移动到路径上的下一个节点，其中的服务取决于该链路的特定链路层协议。链路层分组被称为帧。</p>
+<p><b><font color=DeepSkyBlue>物理层</font></b>：将帧中的一个一个比特将一个节点移动到下一个结点。每种场合中，跨越链路移动一个比特是以不同的方式进行的。</p>
+<h4 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h4><p>ISO提出网络应组织为大约7层，包括应用层，表示层，会话层，运输层，网络层，数据链路层，物理层。</p>
+<p>表示层是使通信的应用程序能够解释交换数据的含义，包括数据压缩、数据加密和数据描述。</p>
+<p>会话层提供了数据交换定界和同步功能，包括建立检查点和恢复方案的方法。</p>
+<p>而在因特网协议栈中，这两层的功能可以由应用程序开发者自行构建。</p>
+<br>
+
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>每一层，每一个分组据有两种类型的字段：首部字段和有效载荷字段。有效载荷字段通常来自上一层分组。</p>
+<h2 id="二、应用层"><a href="#二、应用层" class="headerlink" title="二、应用层"></a>二、应用层</h2><h3 id="网络应用程序体系"><a href="#网络应用程序体系" class="headerlink" title="网络应用程序体系"></a>网络应用程序体系</h3><p>分为客户-服务器体系结构或P2P（对等）体系结构</p>
+<blockquote>
+<p>在给定的一堆进程中的通信会话中，  发起请求的是<strong>客户</strong>，等待联系的是<strong>服务器</strong>。</p>
+</blockquote>
+<p>进程中通过套接字交换报文。进程可类比一座房子，而套接字可以类比于门，报文先出门后进房。</p>
+<br>
+
+<h3 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h3><blockquote>
+<p>应用层协议只是网络应用的一部分。</p>
+</blockquote>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>Web的应用层协议是HTTP（超文本传输协议），使用TCP作为传输协议，这意味着客户进程的每个HTTP请求报文最终都能完整到达服务器，相反，服务器的每个HTTP响应报文最终都能完整到达客户。HTTP默认持续连接，所有的请求和响应经相同的TCP连接发送。HTTP服务器并不保存客户的任何信息，是个<b>无状态协议</b>。</p>
+<blockquote>
+<p>非持续连接：每次只传输一个请求报文和响应报文，随后中断。</p>
+<p>持续连接：服务器发送响应后保持TCP连接打开，相同客户与服务器之间的后续请求和响应由相同连接传送。</p>
+<p>对比两者，非持续连接必须每次都建立和维护一个新的TCP连接，每个对象要经受两个RTT的时延（创建TCP连接+请求发送对象）。</p>
+</blockquote>
+<h5 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h5><ol>
+<li>请求报文</li>
+</ol>
+<p>这是用谷歌浏览器获取到的请求baidu.com时的报文。</p>
+<p>第一行叫做请求行，后面行都叫做首部行，首部行后时实体体，使用GET时实体体为空，POST才使用</p>
+<p>请求行包括三个字段：请求方法、URL字段和HTTP版本字段。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9,en;q=0.8</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>响应报文</li>
+</ol>
+<p>第一行是初始状态行，版本、状态码和状态对象，有6个首部行，随后是实体体。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Connection: close</span><br><span class="line">Date: Thu, 13 Jan 2022 04:48:01 GMT</span><br><span class="line">Server: BWS/1.1</span><br><span class="line">Last-Modified: Tue, 11 Jan 2022 02:32:39 GMT</span><br><span class="line">Content-Length: 6821</span><br><span class="line">Content-Type: text/html</span><br></pre></td></tr></table></figure>
+
+<p>站点大多采用Cookie，用一个唯一识别码跟踪用户活动。</p>
+<h4 id="文件传输协议FTP"><a href="#文件传输协议FTP" class="headerlink" title="文件传输协议FTP"></a>文件传输协议FTP</h4><p>FTP采用TCP进行连接，但与HTTP不同的是，它需要两个并行的TCP链接来传输文件，一个控制连接，服务器打开21端口等待与客户连接，等待命令传送，随后传回回应；一个数据连接，用来传送数据。每次文件传输都需要建立一个新的数据连接。FTP需要在会话过程中保持用户的状态。</p>
+<h4 id="电子邮件协议"><a href="#电子邮件协议" class="headerlink" title="电子邮件协议"></a>电子邮件协议</h4><p>电子邮件系统包含三部分，用户代理、邮件服务器和邮件协议，通过25端口活动。</p>
+<p>邮件协议分为传输协议和访问协议。</p>
+<p><img data-src="/../../images/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE" alt="image-20220113133804622"></p>
+<h5 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h5><p><img data-src="/../../images/SMTP" alt="image-20220113134031226"></p>
+<p>SMTP只能发送ASCII码。互联网邮件扩充MIME补充了这个缺点，增加邮件主体结构。</p>
+<h5 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h5><p>当建立了一个通过110端口上的TCP连接时，POP3开始工作。POP3对邮件有“下载删除”，“下载保留”两种处理方式。</p>
+<h5 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h5><p>IMAP将报文与文件夹相联系，收件人可以随意移动文件夹，还可以允许用户查询邮件，允许用户代理读取报文组件。</p>
+<br>
+
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>DNS是一个在因特网上实现分布式数据库的精彩范例。 组织层次大致如图所示。</p>
+<pre class="mermaid">graph TD;
+A[根DNS服务器]-->B[TLD服务器]
+A-->C[TLD服务器]
+A-->D[TLD服务器]
+B-->E[权威服务器]
+C-->F[权威服务器]
+D-->G[权威服务器]
+D-->H[权威服务器]</pre>
+
+<br>
+
+<h3 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h3><p>例如文件分发，迅雷也是基于此。边下载边上传。</p>
+<h2 id="三、运输层"><a href="#三、运输层" class="headerlink" title="三、运输层"></a>三、运输层</h2><p>运输层为运行在不同主机上的应用进程提供逻辑通信，运输层协议是在端系统中实现的，因特网有两种协议，即TCP和UDP。</p>
+<br/>
+
+<h3 id="多路复用和多路分解"><a href="#多路复用和多路分解" class="headerlink" title="多路复用和多路分解"></a>多路复用和多路分解</h3><p>多路分解：将运输层报文段中的数据交付到正确的套接字的工作称为多路分解。</p>
+<p>多路复用：在源主机从不同套接字中收集数据块，并为每个数据块封装首部信息（用于以后分解）生成报文段，随后将报文段传递到网络层，这些工作成为多路分解。</p>
+<blockquote>
+<p>多路复用的要求：</p>
+<ul>
+<li>套接字有唯一标识符；</li>
+<li>每个报文段有特殊字段来指示该报文段所交付到的套接字；</li>
+</ul>
+</blockquote>
+<p>UDP套接字由一个二元组来全面标识，包含目的IP地址和目的端口号。</p>
+<p>TCP套接字由一个四元组来标识，包含源IP地址，源端口号，目的IP地址，目的端口号。</p>
+<br/>
+
+<h3 id="UDP和TCP"><a href="#UDP和TCP" class="headerlink" title="UDP和TCP"></a>UDP和TCP</h3><ul>
+<li>UDP（用户数据报协议）为调用它的应用程序提供了一种不可靠、无连接的服务，尽最大可能交付，没有拥塞控制和流量控制。</li>
+<li>TCP（传输控制协议）为调用它的应用程序提供了一种可靠、面向连接的服务，提供可靠交付，有拥塞控制和流量控制。</li>
+</ul>
+<p>适用UDP的原因：关于何时、发送什么数据的应用层控制更为精细；无需连接建立、无连接状态、分组首部开销小。</p>
+<br/>
+
+<h3 id="UDP报文"><a href="#UDP报文" class="headerlink" title="UDP报文"></a>UDP报文</h3><p>首部仅有4个字段，每个字段由2个字节组成。12 字节的伪首部是为了计算检验和临时添加的。</p>
+<p><img data-src="/../../images/d4c3a4a1-0846-46ec-9cc3-eaddfca71254-1642406686409-1642406689150.jpg" alt="img"></p>
+<p>检验和是为了提供差错检测功能，用于确定报文从源到目的地移动时，其中比特是否发生了变化，但UDP对差错恢复无能为力。</p>
+<br/>
+
+<h3 id="可靠传输"><a href="#可靠传输" class="headerlink" title="可靠传输"></a>可靠传输</h3><blockquote>
+<p>在研究TCP如何实现数据可靠传输前，作者一步步研究了三种rdt。</p>
+</blockquote>
+<h4 id="rdt1-0"><a href="#rdt1-0" class="headerlink" title="rdt1.0"></a>rdt1.0</h4><p>底层信道完全可靠的情况下，无需担心产生差错。</p>
+<h4 id="rdt2-0"><a href="#rdt2-0" class="headerlink" title="rdt2.0"></a>rdt2.0</h4><p>再靠近实际一点，分组中的比特可能受损。采用肯定确认和否定确认这样的重传机制的协议被称为自动重传请求。此外还需要三种协议功能来处理比特受损情况。</p>
+<ul>
+<li>差错检测。能使得接收方检测到何时出现比特差错。</li>
+<li>接收方反馈。例如肯定确认（ACK）和否定确认（NAK）。</li>
+<li>重传。接收方收到有差错的分组时，发送方将重传该分组文。</li>
+</ul>
+<h4 id="rdt2-1"><a href="#rdt2-1" class="headerlink" title="rdt2.1"></a>rdt2.1</h4><p>但对于2.0来说，当ACK/NAK分组受损时，发送方不知接收方是否正确接收了上一块发送的数据。</p>
+<ul>
+<li>增加足够的检验和比特。发送方不仅可以检测差错，还可以恢复差错。</li>
+<li>引入冗余分组。当ACK/NAK模糊不清时，发送方重传当前数据分组，但对于接收方来说，无法获知收到的分组是重传还是新分组。</li>
+</ul>
+<p><b><font color=brown>一个简单方法，向数据分组中增加“序号”新字段，接收方只需检查序号来判断是否为重传。</font></b></p>
+<h4 id="rdt2-2"><a href="#rdt2-2" class="headerlink" title="rdt2.2"></a>rdt2.2</h4><p>在2.1中，当收到失序分组，接收方发送ACK；当收到受损分组，接收方发送一个NAK。但发送上一个分组的ACK也能达到同样效果，则2.2是一个有比特差错信道上实现的一个无NAK的可靠数据传输协议。</p>
+<h4 id="rdt3-0"><a href="#rdt3-0" class="headerlink" title="rdt3.0"></a>rdt3.0</h4><p>对于丢包问题，引入了冗余数据分组，为了实现基于时间的重传机制，设定了倒计数定时器。</p>
+<p>发送方能做到每次发送分组时启动定时取，能相应定时器中断，终止定时器。</p>
+<p><em>因为分组序号在01间交替，rdt3.0也被称为比特交替协议</em></p>
+<h4 id="流水线可靠数据传输协议"><a href="#流水线可靠数据传输协议" class="headerlink" title="流水线可靠数据传输协议"></a>流水线可靠数据传输协议</h4><p>rdt3.0性能问题的核心在于它是一个停等协议，对于信道的利用率不高。而流水线则不用停等方式运行，允许发送方发送多个分组而无需等待确认。随之而来，必须增加序号范围、两端必须能够缓存多个分组、 所需序号的范围和对缓冲的要求取决于数据传输协议如何处理丢失、损坏及延时过大的分组。</p>
+<p>差错处理有两种，回退N步（GBN）和选择重传（SR）</p>
+<p><b>GBN</b>：允许发送方发送多个分组而无需等待确认，但流水线中未确认的分组数不能超过N。</p>
+<p><img data-src="/../../images/image-20220117215928936.png" alt="image-20220117215928936"></p>
+<p>[0，base-1]对应发送已被确认的分组，[base，nextseqnum-1]对应已发送未确认分组，[nextseqnum，base+N-1]对应能立即被发送的分组，大于等于base+N的序号无法使用，直至流水线中未被确认的分组被确认。其中N被称为窗口长度，GBN协议也被称为滑动窗口协议。</p>
+<p>发送方也必须响应三类事件</p>
+<ul>
+<li>上层调用：检查窗口是否满了，若是未满，则产生一个分组将其发送。</li>
+<li>收到一个ACK：采取累积确认</li>
+<li>超时事件：会重发所有已发送但未被确认的分组。如果收到一个ACK，定时器重新启动；若没有未被确认的分组，该定时器被终止。</li>
+</ul>
+<p>接收方向发送方发送的是带有当前被成功接收分组序号的ACK（必须为按序交付），其他情况，接收方丢弃该分组，为最近按序接受的分组重新发送ACK。</p>
+<p><b>SR</b>：发送方仅重传它怀疑在接收方出错的分组，避免不必要重传。</p>
+<p><img data-src="/../../images/image-20220117221540147.png" alt="image-20220117221540147"></p>
+<p>SR 发送方：</p>
+<ul>
+<li>从上层接收数据： 检查下一个可用于该分组的序号，若在发送方的窗口内，则将数据打包发送。</li>
+<li>超时： 定时器再次用来防止丢失分组。但是现在每个分组必须得有单独的定时器。</li>
+<li>收到 ACK：倘若该分组序号在窗口内，则 SR 发送方将那个被确认的分组标记为已接收。如果该分组的序号等于send_base，则窗口基序号向前移动到具有最小序号的未确认分组处。如果窗口移动了并且该序号落在窗口内的未发送分组，则发送这些分组。</li>
+</ul>
+<p>SR 接收方：</p>
+<ul>
+<li>序号在 [rcv_base, rcv_base + N -1] 内的分组被正确接收：在此情况下，收到的分组落在接收方的窗口内，一个选择 ACK 被回送给发送方。如果该分组以前没收到过，则缓存该分组。如果该分组的序号等于接收窗口的基序号，则该分组及以前缓存的序号连续的分组交付给上层。</li>
+<li>序号在 [rcv_base - N, rcv_base - 1] 内的分组被正确接收： 产生一个 ACK，即使该分组是接收方以前已确认过的分组。因为视图不一致。</li>
+<li>其他情况：忽略该分组。</li>
+</ul>
+<p>接收方将确认一个正确接收的分组而不管其是否按序；失序的分组被缓存，直到形成连续数据后将其提交给上层；值得注意的是，如果接收方收到了已经确认的分组，则说明确认ACK丢失，或者时延太长，接收方和发送方沟通不及时；这也表明了关于那些分组到位了，那些分组还没到位，接收方和发送方有着不一样的视图。</p>
+<p>另外还需要注意的是，序号的重用问题，如果在分组中序号字段的位数为k，那么最大的序号为2^k-1，所以有可能不同分组同时占用一个序号，为了避免这种情况，需要做的是控制分组的生命周期。窗口长度必须小于或等于序号空间大小的一半。</p>
+<p><img data-src="/../../images/image-20220118100642788.png" alt="image-20220118100642788"></p>
+<br>
+
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><h4 id="拥塞网络的代价"><a href="#拥塞网络的代价" class="headerlink" title="拥塞网络的代价"></a>拥塞网络的代价</h4><ul>
+<li>当分组的到达速率接近链路容量，分组经过巨大的排队时延。</li>
+<li>发送方必须执行重传以补偿因为缓存溢出而丢弃的分组。</li>
+<li>发送方在遇到大时延时所进行的不必要重传会引起路由器利用其链路带宽来转发不必要的分组副本。 </li>
+<li>一个分组沿一条路径被丢弃时，每个上游路由器用于转发该分组到丢弃该分组而使用的传输容量最终被浪费。</li>
+</ul>
+<h4 id="拥塞控制方法"><a href="#拥塞控制方法" class="headerlink" title="拥塞控制方法"></a>拥塞控制方法</h4><ul>
+<li>端到端拥塞控制：网络层没有为运输层拥塞控制提供显式支持，TCP必须通过端对端的方法解决拥塞控制。报文段的丢失被认为时网络拥塞的一个迹象。</li>
+<li>网络辅助的拥塞控制：网络层向发送方提供关于网络中拥塞状态的显式反馈信息。采用拥塞分组、路由器标记或更新从发送方流向接收方的分组中的每个字段来指示拥塞的产生。</li>
+</ul>
+<br>
+
+<h3 id="TCP报文"><a href="#TCP报文" class="headerlink" title="TCP报文"></a>TCP报文</h3><p><img data-src="/../../images/55dc4e84-573d-4c13-a765-52ed1dd251f9.png" alt="img"></p>
+<ul>
+<li>源端口号和目的端口号，被用于多路复用/分解来自或送到上层应用的数据。</li>
+<li>32比特的序号字段：该报文段首字节的字节流编号。</li>
+</ul>
+<blockquote>
+<p>假定数据流由一个500000字节的文字组成，MSS（最大报文段长度）为1000字节，数据首字节编号为0。则被划分为500个报文段。第一个报文段序号为1，第二个为1000，第三个为2000。</p>
+</blockquote>
+<ul>
+<li>32比特的确认号：期望收到的下一个报文段的序号。</li>
+</ul>
+<blockquote>
+<p>如果A已经收到来自B的编号为0~535的所有字节，同时假设他准备发送一个报文段给B，在等到536及以后的所有字节，所以A-B的报文确认字段号填上536。</p>
+</blockquote>
+<ul>
+<li>16比特的接收窗口字段，用于流量控制，填入接收方愿意接受的字节数量。</li>
+<li>4比特的首部长度（数据偏移）字段：指定了以32比特的字为单位的TCP首部长度。</li>
+<li>6比特的标志字段</li>
+</ul>
+<blockquote>
+<p>ACK比特：确认字段的值是有效的。</p>
+<p>SYN比特：连接建立时同步序号。</p>
+<p>FIN比特：释放连接的信号。</p>
+</blockquote>
+<p>TCP采取超时/重传机制处理文报丢失。TCP仅为传输一次的报文段测量SampleRTT，然后用<code>EstimatedRTT = (1-a)*EstimatedRTT + a*SampleRTT</code>更新EstimatedRTT。使用<code>DevRTT = (1-b)*DevRTT + b*|SampleRTT-EstimatedRTT|</code>计算RTT偏差。而超时间隔<code>TimeoutInterval = EstimatedRTT + 4*DevRTT</code>。</p>
+<h4 id="TCP可靠数据传输"><a href="#TCP可靠数据传输" class="headerlink" title="TCP可靠数据传输"></a>TCP可靠数据传输</h4><p>TCP在IP尽力而为的服务上创建了一种可靠数据传输服务。</p>
+<p>TCP发送方有3个与发送和重传有关的主要事件：</p>
+<ul>
+<li>从上层接收到数据：封装数据到报文段，交给IP。启动定时器，过期间隔是<code>TimeoutInterval</code>。        </li>
+<li>定时器超时：重传超时的报文段，随后TCP重启定时器。</li>
+<li>收到ACK：根据y与SendBase的关系，采取累计确认/重启定时器。</li>
+</ul>
+<p>超时间隔加倍：TCP在重传具有最小序号的还未被确认的报文段，只是每次TCP重传是都会将下一次的超时间隔设为先前值的2倍，而不是用EstimatedRTT和DevRTT推算出来的值。</p>
+<p>快速重传：利用冗余ACK（当TCP收到一个序号大于下一个所期望的按需的报文段，检测到数据有间隔，意味着有报文段丢失，接收方对已接受到的最后一个按序字节数据发送ACK），一旦受到三个冗余ACK，TCP就执行快速重传，在定时器过期之前重传丢失的报文段。</p>
+<p>TCP的差错回复机制采取选择确认和选择重传机制，最好被分类为GBN和SR协议的混合体。</p>
+<h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h4><p>发送方通过维护一个称为接收窗口的变量来提供流量控制，通过该窗口，发送方可以获知接收方还有多少可用的缓存空间。 </p>
+<br/>
+
+<h4 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h4><p><img data-src="/../../images/image-20220117171509715.png" alt="image-20220117171509715"></p>
+<ul>
+<li>服务器端处于LISTEN（监听）状态；</li>
+<li>客户端向服务器端发送一个特殊TCP报文段，该文段中不包含应用层数据。SYN=1，会随便选择一个初始序号client_isn（seq=client_isn）；</li>
+<li>服务器端接到请求报文，为该TCP连接分配缓存和变量，并发送一个确认报文。SYN=1，ACK=1，确认号为client_isn+1（ack=client_isn+1），选择一个初始序号server_isn（seq=server_isn）【该报文被称为SYNACK报文段】；</li>
+<li>接到SYNACK报文后，客户也要给该连接分配缓存和变量，并向主机发送另一个报文段。该报文段可以携带数据。SYN=0，seq=clinet_isn+1，ack=server_isn+1。【之后的报文中，SYN都被置为0】</li>
+</ul>
+<p><b>为什么是三次握手，而不是两次握手/四次握手？</b></p>
+<p>答：两次握手：客户发送请求、seq=client_isn；服务器确认客户发来的seq，自己的seq=server_isn。这样只对客户的起始序列号达成同步，对服务器的起始序列号没有同步，无法达成可靠连接。</p>
+<p>四次握手：客户发送请求、seq=client_isn；服务器确认客户seq，并发送ack=client_isn+1；服务器发送seq=server_isn；客户端确认服务器seq，发送ack=server_isn+1。其中23步可以合并，提高连接效率和速度。</p>
+<br/>
+
+<h4 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h4><p><img data-src="/../../images/image-20220117211834313.png" alt="image-20220117211834313"></p>
+<ul>
+<li>客户端进程发出一个关闭连接命令，FIN=1；</li>
+<li>服务器收到后发出ACK报文段；</li>
+<li>服务器发出自己的终止报文，FIN=1；</li>
+<li>客户端进行确认，连接被释放。</li>
+</ul>
+<br/>
+
+<h4 id="客户端和服务端TCP经历的各种状态"><a href="#客户端和服务端TCP经历的各种状态" class="headerlink" title="客户端和服务端TCP经历的各种状态"></a>客户端和服务端TCP经历的各种状态</h4><p><img data-src="/../../images/image-20220117212159479.png" alt="image-20220117212159479"></p>
+<p><img data-src="/../../images/image-20220117212228160.png" alt="image-20220117212228160"></p>
+<h4 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h4><p>TCP让每一个发送方根据所感知到的网络拥塞程度来限制其能向连接发送流量的速率。丢包事件被定义为超时/收到来自接收方的3个冗余ACK。</p>
+<p>TCP拥塞控制算法：</p>
+<ul>
+<li>慢启动模式</li>
+</ul>
+<blockquote>
+<p>当一条TCP连接开始时，cwnd（拥塞窗口）通常初始置为一个MSS的较小值，在慢启动状态，每经过一个RTT，报文被确认后，发送速率都翻番。例如：开始增加为2个MSS，确认后被增加为4MSS。</p>
+<p>何时结束指数级增长呢？ssthresh是慢启动阈值。</p>
+<ol>
+<li>超时，cwnd设为1，重新开始慢启动，ssthresh设为cwnd的一半。</li>
+<li>当检测到ssthresh为cwnd的一半，结束慢启动并将TCP转移到拥塞避免模式，更为谨慎地增加cwnd。</li>
+<li>若检测到3个冗余ACK，TCP执行一次快速重传并进入快速恢复状态。</li>
+</ol>
+</blockquote>
+<ul>
+<li>拥塞避免模式</li>
+</ul>
+<blockquote>
+<p>TCP发送方无论何时到达一个新的确认，就将cwnd增加一个MSS字节。</p>
+<p>何时结束拥塞避免的线性增长？</p>
+<ol>
+<li>超时，cwnd被设置为1个MSS</li>
+<li>丢包，ssthresh被更新为cwnd的一半。</li>
+<li>3个冗余ACK，ssthresh记录为cwnd的一半，接下来进入快速恢复状态。</li>
+</ol>
+</blockquote>
+<ul>
+<li>快速恢复模式（推荐的而非必需的构件）</li>
+</ul>
+<blockquote>
+<p>对于引起TCP进入快速恢复状态的缺失报文段，对于收到的每个冗余ACK，cwnd增加一个MSS。</p>
+<ol>
+<li>对丢失报文段的一个ACK到达，TCP在降低cwnd后进入拥塞避免模式</li>
+<li>出现超时，cwnd被设置为1个MSS，迁移到慢启动状态</li>
+<li>丢包，cwnd被设置为1个MSS，ssthresh的值设置为cwnd的一半。</li>
+</ol>
+</blockquote>
+<p>TCP拥塞控制被称为<strong>加性增、乘性减</strong>。</p>
+<br>
+
+<h2 id="四、网络层"><a href="#四、网络层" class="headerlink" title="四、网络层"></a>四、网络层</h2><h3 id="网络层功能"><a href="#网络层功能" class="headerlink" title="网络层功能"></a>网络层功能</h3><p>网络层的作用即将分组从一台发送主机移动到一台接受主机，故必须具有两大功能：</p>
+<ul>
+<li>转发：一个分组到达路由器的一条输入链路时，路由器必须将该分组移动到适当的输出链路。</li>
+<li>路由选择：分组从发送方流向接收方时，网络层必须决定这些分组所采用的路由或路径。路径的算法被称为路由选择算法。</li>
+</ul>
+<blockquote>
+<p>每个路由器具有一张转发表，路由器通过检查到达分组首部字段的值来转发分组（可能是目的地址或该分组所属连接的指示，取决于网络层协议），利用该值在该路由器转发表中索引查询。查询到的值指出了该分组将被转发的路由器的输出链路接口。</p>
+<p>路由选择算法决定了插入路由器的转发表中的值，由路由器接受路由选择协议报文，用于配置转发表。</p>
+</blockquote>
+<p>在某些计算机网络中，还会有第三种网络功能，连接建立。允许发送方和接收方建立所需的状态信息，要求从源到目的地沿着所选择的路径彼此握手，以便在给定源到目的地连接中的网络层数据分组能够开始流动之前建立起状态。</p>
+<br/>
+
+<h3 id="网络层服务"><a href="#网络层服务" class="headerlink" title="网络层服务"></a>网络层服务</h3><p>在发送主机中，当运输层向网络层传递一个分组时，能由网络层提供的特定服务包括：</p>
+<ul>
+<li>确保交付。该服务确保分组将最终到达目的地。</li>
+<li>具有时延上界的确保交付。</li>
+</ul>
+<p>能够为给定的源和目的地之间的分组流提供以下服务：</p>
+<ul>
+<li>有序分组交付。确保分组以它们发送的顺序到达目的地。</li>
+<li>确保最小带宽。</li>
+<li>确保最大时延抖动。</li>
+<li>安全性服务。机密性、数据完整性和源鉴别服务。</li>
+</ul>
+<br/>
+
+<h3 id="虚电路和数据报网络"><a href="#虚电路和数据报网络" class="headerlink" title="虚电路和数据报网络"></a>虚电路和数据报网络</h3><p>这些服务是由网络层向运输层提供的主机到主机的服务。仅在网络层提供连接服务的计算机网络称为虚电路网络，提供无连接服务的称为数据报网络。</p>
+<p>一条虚电路的组成：源和目的主机之间的路径，VC号（沿着该路径的每一条链路的一个号码），沿着该路径的每台路由器中的转发表表项。每条链路上的VC号不同，是因为逐链路代替该号码减少了在分组首部中VC字段的长度，也简化了虚电路的建立。</p>
+<p>只要创建一条新的虚电路，转发表就增加一个新表项；只要终止 一条虚电路，沿着该路径每个表中的相应项将被删除。路由器也必须为连接维持连接状态信息。</p>
+<p>在数据报网络中，每当一个端系统要发送分组，它就为该分组加上目的端系统的地址，再将分组推进网络中。这种发送可能是无序到达的。</p>
+<br/>
+
+<h3 id="转发和编址"><a href="#转发和编址" class="headerlink" title="转发和编址"></a>转发和编址</h3><p>网络层有三个主要组件，即IP协议、路由选择部分和报告数据包中的差错和对某些网络层信息请求进行响应的设施</p>
+<h4 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h4><p>IPv4编址为子网分配一个地址223.1.1.0/24，其中/24的记法有时称为子网掩码，意味着32比特中最左侧的24比特定义了子网地址。因特网采用无类别域间路由选择（CIDR）进行地址分配。当一台主机发出一个目的地址为255.255.255.255的数据包时，该报文会交付给同一个网络中的所有主机。</p>
+<p>一个组织如何为设备获取地址块？</p>
+<ul>
+<li>从一个ISP获取一组地址</li>
+</ul>
+<p>一个设备如何从某组织的地址块中分配到一个地址？</p>
+<p>采用动态主机配置协议（DHCP）来完成，允许主机自动获取一个IP地址，而通过配置DHCP，使得某给定主机每次与网络连接时能得到一个相同的IP地址，或某主机被分配到一个临时的IP地址。DHCP也被称为即插即用协议，能将主机连接进一个网络的自动能力。</p>
+<h4 id="因特网控制报文协议ICMP"><a href="#因特网控制报文协议ICMP" class="headerlink" title="因特网控制报文协议ICMP"></a>因特网控制报文协议ICMP</h4><p>ICMP位于IP之上，但被封装在IP内。报文包括一个类型字段和一个编码字段。</p>
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4><p>将IP地址长度由32比特增加到128比特，并加入了一种称为任播地址的新型地址，可以将数据报交付给一组主机中的任意一个，40字节的定长首部，不允许在中间路由器上进行分片和重新组装，去掉首部检验和字段。</p>
+<br/>
+
+<h3 id="路由选择"><a href="#路由选择" class="headerlink" title="路由选择"></a>路由选择</h3><p>算法广义分类：</p>
+<ul>
+<li>全局式（LS链路状态算法）/分散式（DV距离向量算法）</li>
+<li>静态/动态路由选择算法</li>
+<li>负载敏感/负载迟钝算法</li>
+</ul>
+<h4 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h4><ul>
+<li><p>内部网关协议RIP</p>
+<p>RIP（路由选择信息协议）是一种距离向量协议。距离是指跳数，直接相连的路由器跳数为1，一条链路最大费用被限制为15。在邻居家通过使用一种RIP响应报文来交换，大概每30s相互交换一次。响应报文中包含一个该AS内的多达25个目的子网的列表</p>
+</li>
+<li><p>内部网关协议OSPF</p>
+<p>OSPF（开放最短路优先）其核心为一个使用洪泛链路状态信息的链路状态协议和一个Dijkstra最短路径算法。</p>
+</li>
+<li><p>边界网关协议BGP</p>
+<p>它为跨越多个AS的源和目的队之间确定路径提供了途径。BGP为每个AS提供了以下工作的手段：从相邻AS处获得子网可达性信息 ，向本AS内部的所有路由器传播这些可达性信息，基于可达性信息和AS策略决定到达子网的“好”路由。</p>
+<br></li>
+</ul>
+<h2 id="五、链路层"><a href="#五、链路层" class="headerlink" title="五、链路层"></a>五、链路层</h2><p>链路层的主体在网络适配器中实现，提供的服务包括：</p>
+<ul>
+<li>成帧：在网络层数据报经链路传送之前，几乎所有的协议都要将其封装起来。</li>
+<li>链路接入</li>
+<li>可靠交付</li>
+<li>差错检测和纠正</li>
+</ul>
+<h3 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h3><h4 id="信道划分协议"><a href="#信道划分协议" class="headerlink" title="信道划分协议"></a>信道划分协议</h4><ul>
+<li><p>时分多路复用（TDM）所有主机在不同的时间占用相同的频率带宽资源。</p>
+</li>
+<li><p>频分多路复用（FDM）所有主机在相同的时间占用不同的频率带宽资源。</p>
+</li>
+<li><p>码分多址（CDMA）为每个结点分配一种不同的编码，使用这个唯一编码对数据进行编码。</p>
+</li>
+</ul>
+<h4 id="随机接入协议"><a href="#随机接入协议" class="headerlink" title="随机接入协议"></a>随机接入协议</h4><ul>
+<li>时隙ALOHA协议</li>
+<li>载波侦听多路访问（CSMA）协议</li>
+<li>具有碰撞检测的载波侦听多路访问协议（CSMA/CD）</li>
+</ul>
+<h4 id="轮流协议"><a href="#轮流协议" class="headerlink" title="轮流协议"></a>轮流协议</h4><ul>
+<li>轮询协议</li>
+<li>令牌传递协议</li>
+</ul>
+<h3 id="链路层寻址"><a href="#链路层寻址" class="headerlink" title="链路层寻址"></a>链路层寻址</h3><h4 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h4><p>网络接口具有链路层地址，但交换机并不具有与之相关联的接口的链路层地址。链路层地址也被称为LAN地址、物理地址或MAC地址。适配器地址不同，具有扁平结构。</p>
+<h4 id="地址解析协议（ARP）"><a href="#地址解析协议（ARP）" class="headerlink" title="地址解析协议（ARP）"></a>地址解析协议（ARP）</h4><p>ARP将一个IP地址解析为MAC地址，只为在同一个子网上的主机和路由器接口解析IP地址。</p>
+<h4 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h4><p>以太网是一种星形拓扑局域网，在发展中，交换机逐步将集线器替代。以太网帧的负载是一个IP数据报，但也可以承载其他网络层分组，采取<em>类型</em>字段来区别协议格式，CRC可以使得适配器检测帧中是否引入了差错。以太网技术向网络层提供不可靠服务。</p>
+<h4 id="链路层交换机"><a href="#链路层交换机" class="headerlink" title="链路层交换机"></a>链路层交换机</h4><p>交换机自身对于子网中的主机和路由器是透明的，主机/路由器在传送帧时，并不知道交换机在其中的作用。交换机狮是自学习的，即插即用的。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Au revoir
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://immortalfires.github.io/2022/01/10/22011001/" title="计算机网络">https://immortalfires.github.io/2022/01/10/22011001/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/09/220109/" rel="prev" title="Java基础(五)">
+      <i class="fa fa-chevron-left"></i> Java基础(五)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/11/22011002/" rel="next" title="剑指Offer（一）">
+      剑指Offer（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="nav-text">一、网络与因特网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E4%BA%A4%E6%8D%A2"><span class="nav-text">两种交换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="nav-text">分组交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2"><span class="nav-text">电路交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E4%B8%8E%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E5%AF%B9%E6%AF%94"><span class="nav-text">分组交换与电路交换对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BB%B6"><span class="nav-text">分组交换网中的时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A2%E5%8C%85"><span class="nav-text">丢包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%97%B6%E5%BB%B6"><span class="nav-text">端到端时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%AC%A1%E5%8F%8A%E5%85%B6%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="nav-text">协议层次及其服务模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="nav-text">因特网协议栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OSI%E6%A8%A1%E5%9E%8B"><span class="nav-text">OSI模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-text">封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-text">二、应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%BD%93%E7%B3%BB"><span class="nav-text">网络应用程序体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="nav-text">应用层协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="nav-text">报文格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEFTP"><span class="nav-text">文件传输协议FTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE"><span class="nav-text">电子邮件协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SMTP"><span class="nav-text">SMTP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POP3"><span class="nav-text">POP3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IMAP"><span class="nav-text">IMAP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P"><span class="nav-text">P2P</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-text">三、运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3"><span class="nav-text">多路复用和多路分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP%E5%92%8CTCP"><span class="nav-text">UDP和TCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP%E6%8A%A5%E6%96%87"><span class="nav-text">UDP报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-text">可靠传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rdt1-0"><span class="nav-text">rdt1.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdt2-0"><span class="nav-text">rdt2.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdt2-1"><span class="nav-text">rdt2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdt2-2"><span class="nav-text">rdt2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rdt3-0"><span class="nav-text">rdt3.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="nav-text">流水线可靠数据传输协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-text">拥塞网络的代价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="nav-text">拥塞控制方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E6%8A%A5%E6%96%87"><span class="nav-text">TCP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="nav-text">TCP可靠数据传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-text">TCP三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-text">TCP的四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AFTCP%E7%BB%8F%E5%8E%86%E7%9A%84%E5%90%84%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-text">客户端和服务端TCP经历的各种状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-text">TCP拥塞控制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-text">四、网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8A%9F%E8%83%BD"><span class="nav-text">网络层功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9C%8D%E5%8A%A1"><span class="nav-text">网络层服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E7%94%B5%E8%B7%AF%E5%92%8C%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%BD%91%E7%BB%9C"><span class="nav-text">虚电路和数据报网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8F%91%E5%92%8C%E7%BC%96%E5%9D%80"><span class="nav-text">转发和编址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IPv4"><span class="nav-text">IPv4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AEICMP"><span class="nav-text">因特网控制报文协议ICMP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IPv6"><span class="nav-text">IPv6</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9"><span class="nav-text">路由选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="nav-text">路由选择协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-text">五、链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE"><span class="nav-text">多路访问协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E5%88%92%E5%88%86%E5%8D%8F%E8%AE%AE"><span class="nav-text">信道划分协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%A5%E5%85%A5%E5%8D%8F%E8%AE%AE"><span class="nav-text">随机接入协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AE%E6%B5%81%E5%8D%8F%E8%AE%AE"><span class="nav-text">轮流协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82%E5%AF%BB%E5%9D%80"><span class="nav-text">链路层寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MAC%E5%9C%B0%E5%9D%80"><span class="nav-text">MAC地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE%EF%BC%88ARP%EF%BC%89"><span class="nav-text">地址解析协议（ARP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="nav-text">以太网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-text">链路层交换机</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Au revoir"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Au revoir</p>
+  <div class="site-description" itemprop="description">日月逝矣，时不我待</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Immortalfires" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Immortalfires" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_43598179" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43598179" rel="noopener" target="_blank"><i class="fab fa-superpowers fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Au revoir</span>
+</div>
+
+
+  <script src='https://unpkg.com/mermaid@/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
