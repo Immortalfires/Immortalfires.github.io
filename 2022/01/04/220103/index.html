@@ -28,7 +28,7 @@
 <meta property="og:description" content="Java基础知识。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-03T17:59:06.000Z">
-<meta property="article:modified_time" content="2022-01-10T01:34:42.167Z">
+<meta property="article:modified_time" content="2022-03-25T04:11:54.101Z">
 <meta property="article:author" content="Au revoir">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-10 01:34:42" itemprop="dateModified" datetime="2022-01-10T01:34:42Z">2022-01-10</time>
+                <time title="修改时间：2022-03-25 04:11:54" itemprop="dateModified" datetime="2022-03-25T04:11:54Z">2022-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,16 +294,16 @@ B -->|解释执行 via JVM| C[机器码]</pre>
 <td align="center">8字节（64位） -2^63—— 2 ^63-1x</td>
 </tr>
 <tr>
-<td align="center"></td>
-<td align="center">-3.4*10^38 ~ 3.4*10^38。</td>
+<td align="center">float</td>
+<td align="center">-3.4*10^38 ~ 3.4*10^38</td>
 </tr>
 <tr>
 <td align="center">double</td>
-<td align="center">8字节（64位） -1.8*10^308 ~ 1.8*10^308。</td>
+<td align="center">8字节（64位） -1.8*10^308 ~ 1.8*10^308</td>
 </tr>
 <tr>
 <td align="center">char</td>
-<td align="center">2字节（16位）\u000 — \ufff。</td>
+<td align="center">2字节（16位）\u000 — \ufff</td>
 </tr>
 <tr>
 <td align="center">boolean</td>
@@ -440,7 +440,7 @@ B -->|解释执行 via JVM| C[机器码]</pre>
 <li>String replaceFirst(String regex, String replacement)：用指定字符串替换第一个匹配的子串；</li>
 <li>String replaceAll(String regex, String replacement)：用指定字符串替换所有的匹配的子串。</li>
 </ul>
-<h3 id="25-String能否被继承？"><a href="#25-String能否被继承？" class="headerlink" title="25. String能否被继承？"></a>25. String能否被继承？</h3><p>答：不能，由final修饰，是个不变类。</p>
+<h3 id="25-String能否被继承？"><a href="#25-String能否被继承？" class="headerlink" title="25. String能否被继承？"></a>25. String能否被继承？</h3><p>答：不能。String类由final修饰，是个不变类。存储String用的数组是个Private，也被final修饰，没有修改他的方法。</p>
 <h3 id="26-String和StringBuffer区别？"><a href="#26-String和StringBuffer区别？" class="headerlink" title="26. String和StringBuffer区别？"></a>26. String和StringBuffer区别？</h3><p>答：String：不变类，一旦被创建，不可改变，直至被销毁。</p>
 <p>StringBuffer：其对象代表一个字符序列可变的字符串，可使用toString转为String对象。</p>
 <h3 id="27-StringBuffer和StringBuilder区别？"><a href="#27-StringBuffer和StringBuilder区别？" class="headerlink" title="27. StringBuffer和StringBuilder区别？"></a>27. StringBuffer和StringBuilder区别？</h3><p>答：其对象均代表一个字符序列可变的字符串，但StringBuffer是线程安全的，StringBuilder时非线程安全的，性能略高。</p>
@@ -614,20 +614,20 @@ B -->|解释执行 via JVM| C[机器码]</pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
