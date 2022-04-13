@@ -216,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-25 11:02:45 / 修改时间：03:29:41" itemprop="dateCreated datePublished" datetime="2022-03-25T11:02:45Z">2022-03-25</time>
+              <time title="创建时间：2022-03-25 11:02:45" itemprop="dateCreated datePublished" datetime="2022-03-25T11:02:45Z">2022-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-13 05:39:13" itemprop="dateModified" datetime="2022-04-13T05:39:13Z">2022-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -265,6 +271,21 @@
 <li><strong>session</strong> : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li>
 <li><strong>global-session</strong> ： 全局 session 作用域，仅仅在基于 portlet 的 web 应用中才有意义，Spring5 已经没有了。Portlet 是能够生成语义代码(例如：HTML)片段的小型 Java Web 插件。它们基于 portlet 容器，可以像 servlet 一样处理 HTTP 请求。但是，与 servlet 不同，每个 portlet 都有不同的会话。</li>
 </ul>
+<h2 id="DI依赖注入"><a href="#DI依赖注入" class="headerlink" title="DI依赖注入"></a>DI依赖注入</h2><p>有构造器注入和Setter方法注入</p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>分为声明式事务和编程式事务</p>
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><ol>
+<li>ISOLATION_DEFAULT  默认使用数据库隔离级别</li>
+<li>ISOLATION_READ_UNCOMMITTED：未提交读，最低隔离级别、事务未提交前，就可被其他事务读取（会出现幻读、脏读、不可重复读）；</li>
+<li>ISOLATION_READ_COMMITTED：提交读，一个事务提交后才能被其他事务读取到（会造成幻读、不可重复读），SQL server 的默认级别</li>
+<li>ISOLATION_REPEATABLE_READ：可重复读，保证多次读取同一个数据时，其值都和事务开始时候的内容是一致，禁止读取到别的事务未提交的数据（会造成幻读），MySQL 的默认级别；</li>
+<li>ISOLATION_SERIALIZABLE：序列化，代价最高最可靠的隔离级别，该隔离级别能防止脏读、不可重复读、幻读。</li>
+</ol>
+<h3 id="事务失效"><a href="#事务失效" class="headerlink" title="事务失效"></a>事务失效</h3><ol>
+<li>方法是非public的</li>
+<li>底层数据库不支持事务</li>
+<li>异常未抛出</li>
+<li>该注解类未被Spring容器管理</li>
+</ol>
 
       
     </div>
