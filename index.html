@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-13 05:39:13" itemprop="dateModified" datetime="2022-04-13T05:39:13Z">2022-04-13</time>
+                <time title="修改时间：2022-04-13 13:56:09" itemprop="dateModified" datetime="2022-04-13T13:56:09Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,46 +247,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p>Spring是一个轻量级的Java开发框架，目的在于提高开发效率。主要由以下几个模块组成</p>
-<ul>
-<li>Spring Core：核心类库，提供IOC依赖注入</li>
-<li>Spring AOP：提供了面向切面的编程实现</li>
-<li>Spring Context：提供框架式的Bean访问方法</li>
-<li>Spring DAO：对JDBC的抽象，简化了数据异常的处理</li>
-<li>Spring ORM：对现有ORM框架的的支持</li>
-<li>Spring Web：支持与struts继承，提供基本面向web的综合特性</li>
-<li>Spring MVC：面向应用的Model-View-Controller实现</li>
-</ul>
-<h2 id="IOC（控制反转）"><a href="#IOC（控制反转）" class="headerlink" title="IOC（控制反转）"></a>IOC（控制反转）</h2><p>​    IOC是一种设计思想，将原本在程序中手动创建对象的控制权，交给Spring框架管理，由Ioc容器根据配置文件去创建实力和管理实例。仅仅只需要配置好配置文件或注解，无需考虑对象被如何创建。</p>
-<p>​    它降低了对象之间的耦合，使得资源变得容易管理。</p>
-<p>​    实现方式：DI（对象注入）</p>
-<h2 id="AOP（面向切面编程）"><a href="#AOP（面向切面编程）" class="headerlink" title="AOP（面向切面编程）"></a>AOP（面向切面编程）</h2><p>​    作为对面向对象的补充，将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑（例如事务处理、日志管理、权限控制等），抽取并封装成可重用模块（切面），降低模块耦合，提高可维护性。</p>
-<p>​    AOP主要通过代理实现，JDK Proxy或者Cglib（动态代理）AspectJ（静态代理）</p>
-<h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><p>代指被Ioc容器所管理的对象</p>
-<p>作用域：</p>
-<ul>
-<li><strong>singleton</strong> : 唯一 bean 实例，Spring 中的 bean 默认都是单例的，对单例设计模式的应用。</li>
-<li><strong>prototype</strong> : 每次请求都会创建一个新的 bean 实例。</li>
-<li><strong>request</strong> : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。</li>
-<li><strong>session</strong> : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li>
-<li><strong>global-session</strong> ： 全局 session 作用域，仅仅在基于 portlet 的 web 应用中才有意义，Spring5 已经没有了。Portlet 是能够生成语义代码(例如：HTML)片段的小型 Java Web 插件。它们基于 portlet 容器，可以像 servlet 一样处理 HTTP 请求。但是，与 servlet 不同，每个 portlet 都有不同的会话。</li>
-</ul>
-<h2 id="DI依赖注入"><a href="#DI依赖注入" class="headerlink" title="DI依赖注入"></a>DI依赖注入</h2><p>有构造器注入和Setter方法注入</p>
-<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>分为声明式事务和编程式事务</p>
-<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><ol>
-<li>ISOLATION_DEFAULT  默认使用数据库隔离级别</li>
-<li>ISOLATION_READ_UNCOMMITTED：未提交读，最低隔离级别、事务未提交前，就可被其他事务读取（会出现幻读、脏读、不可重复读）；</li>
-<li>ISOLATION_READ_COMMITTED：提交读，一个事务提交后才能被其他事务读取到（会造成幻读、不可重复读），SQL server 的默认级别</li>
-<li>ISOLATION_REPEATABLE_READ：可重复读，保证多次读取同一个数据时，其值都和事务开始时候的内容是一致，禁止读取到别的事务未提交的数据（会造成幻读），MySQL 的默认级别；</li>
-<li>ISOLATION_SERIALIZABLE：序列化，代价最高最可靠的隔离级别，该隔离级别能防止脏读、不可重复读、幻读。</li>
-</ol>
-<h3 id="事务失效"><a href="#事务失效" class="headerlink" title="事务失效"></a>事务失效</h3><ol>
-<li>方法是非public的</li>
-<li>底层数据库不支持事务</li>
-<li>异常未抛出</li>
-<li>该注解类未被Spring容器管理</li>
-</ol>
-
+          <p>面试常见知识总结</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/25/220325/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -336,7 +305,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 03:02:00" itemprop="dateModified" datetime="2022-03-25T03:02:00Z">2022-03-25</time>
+                <time title="修改时间：2022-04-13 13:56:34" itemprop="dateModified" datetime="2022-04-13T13:56:34Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,232 +328,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>OSI七层模型：应用层，表示层，会话层，运输层、网络层、数据链路层、物理层；一般学习的是五层协议体系结构，应用层、运输层、网络层、数据链路层、物理层。</p>
-<h1 id="一、应用层"><a href="#一、应用层" class="headerlink" title="一、应用层"></a>一、应用层</h1><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>超文本协议，默认端口80，基于TCP协议，发送http请求前要先建立TCP连接（3次握手），是个[无状态](#HTTP 是不保存状态的协议, 如何保存用户状态?)协议，一般使用session来记录客户端用户的状态。</p>
-<p>优点：扩展性强，速度快，可跨平台</p>
-<p>缺点：明文，不安全，不维护客户端状态</p>
-<h3 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>含义</th>
-<th>常见码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1xx</td>
-<td>表示目前为协议处理中间状态</td>
-<td></td>
-</tr>
-<tr>
-<td>2xx</td>
-<td>成功，报文已收到并被处理</td>
-<td>200</td>
-</tr>
-<tr>
-<td>3xx</td>
-<td>重定向，资源位置改变，需要客户端重新发送请求</td>
-<td></td>
-</tr>
-<tr>
-<td>4xx</td>
-<td>客户端错误，报文有误</td>
-<td>404</td>
-</tr>
-<tr>
-<td>5xx</td>
-<td>服务器错误</td>
-<td>500</td>
-</tr>
-</tbody></table>
-<p>GET是用于获取数据的，POST用于提交数据</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>返回值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>200</td>
-<td>OK</td>
-<td>请求成功，用于POST、GET</td>
-</tr>
-<tr>
-<td>201</td>
-<td>Created</td>
-<td>请求成功并创建新的资源</td>
-</tr>
-<tr>
-<td>202</td>
-<td>Accpeted</td>
-<td>已接受请求但未处理完成</td>
-</tr>
-<tr>
-<td>301</td>
-<td>Moved Permanently</td>
-<td>永久移动，移至新URI</td>
-</tr>
-<tr>
-<td>302</td>
-<td>Found</td>
-<td>临时移动，应使用原URI</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-<td>无法根据客户端请求找到资源</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error</td>
-<td>服务器内部错误，无法完成请求</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="HTTPS与HTTP"><a href="#HTTPS与HTTP" class="headerlink" title="HTTPS与HTTP"></a>HTTPS与HTTP</h3><p>HTTPS是HTTP的加强安全版本，额外使用SSL/TLS作为加密和安全认证，默认端口号未443。相较HHTP保密性好，信任度高，耗费了更多服务器资源。</p>
-<p>SSL/TLS实际消息使用对称加密（通信双方使用唯一密钥），使用非对称加密对密钥进行加密，保证传输消息的保密性（克服HTTP的不安全性）。还需要向CA申请数字证书，保证服务器身份可信（克服HTTP的冒充风险）。</p>
-<h3 id="HTTP-1-0-vs-HTTP-1-1"><a href="#HTTP-1-0-vs-HTTP-1-1" class="headerlink" title="HTTP 1.0 vs HTTP 1.1"></a>HTTP 1.0 vs HTTP 1.1</h3><ol>
-<li>在HTTP1.0中，默认使用短连接；1.1中默认使用长连接，可采用流水线方式。</li>
-<li>新增了24个错误状态响应码</li>
-<li>HTTP1.1在请求头加入了range，允许只请求资源的某个部分，减少浪费带宽的现象</li>
-<li>HTTP1.0主要使用header里的<code>If-Modified-Since</code>,<code>Expires</code>作为缓存判断的标准，而1.1提供了更多缓存头控制缓存策略。</li>
-</ol>
-<h3 id="HTTP-1-1-vs-HTTP-2-0"><a href="#HTTP-1-1-vs-HTTP-2-0" class="headerlink" title="HTTP 1.1 vs HTTP 2.0"></a>HTTP 1.1 vs HTTP 2.0</h3><ol>
-<li>实现多路复用，一个连接并发处理多个请求，1.1是采用多个TCP连接实现处理多个请求。</li>
-<li>2.0对头部数据进行压缩</li>
-<li>允许服务器推送资源到浏览器，改善延迟。</li>
-</ol>
-<h3 id="HTTP-2-0-vs-HTTP-3"><a href="#HTTP-2-0-vs-HTTP-3" class="headerlink" title="HTTP 2.0 vs HTTP 3"></a>HTTP 2.0 vs HTTP 3</h3><ol>
-<li>升级了TLS和头部压缩算法</li>
-<li>将HTTP下层的TCP改为了UDP</li>
-</ol>
-<h3 id="HTTP如何保存用户状态"><a href="#HTTP如何保存用户状态" class="headerlink" title="HTTP如何保存用户状态?"></a>HTTP如何保存用户状态?</h3><p>​    Session为HTTP协议解决了这个问题，服务器端为特定用户创建特定的Session之后就可以标识并跟踪该用户了。Session可以用内存和数据库保存。</p>
-<p>​    可以通过向Cookie中附加一个Session ID来跟踪Session。Cookie一般用于保存用户信息，比如保持登录之类，保存在客户端；Session是通过服务端记录用户状态，保存在服务器端。</p>
-<h3 id="浏览器键入URL地址这个过程发生了什么"><a href="#浏览器键入URL地址这个过程发生了什么" class="headerlink" title="浏览器键入URL地址这个过程发生了什么"></a>浏览器键入URL地址这个过程发生了什么</h3><p>​    总体分为DNS解析、TCP连接、发送HTTP请求、服务器处理并返回报文、浏览器解释渲染页面、连接结束这几个过程。</p>
-<h4 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h4><p>​    DNS解析是一个递归查询的过程，首先会在本地域名服务器中查询，查询不到则向根域名服务器发送请求，查询不到则向顶级域名服务器发送请求，直至查到。随后本地域名服务器将IP地址缓存到本地。</p>
-<h4 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h4><p>​    三次握手后建立数据传输</p>
-<h4 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h4><p>​    构建HTTP请求报文并通过TCP协议发送至服务器指定端口，由三部分组成，请求头，请求报头和请求正文。</p>
-<h4 id="处理请求并返回报文"><a href="#处理请求并返回报文" class="headerlink" title="处理请求并返回报文"></a>处理请求并返回报文</h4><p>​    按照报文格式进一步封装为HTTP Request对象，由状态码、响应报头和响应报文组成。</p>
-<h2 id="SMTP（简单邮件发送协议）"><a href="#SMTP（简单邮件发送协议）" class="headerlink" title="SMTP（简单邮件发送协议）"></a>SMTP（简单邮件发送协议）</h2><p>​    基于TCP协议用来发送电子邮件</p>
-<h3 id="邮件发送过程"><a href="#邮件发送过程" class="headerlink" title="邮件发送过程"></a>邮件发送过程</h3><p>​    客户将写好的邮件信息发送给SMTP服务器，服务器使用SMTP协议转发邮件到指定邮箱服务器，等待用户使用POP3/IMAP协议取邮件。</p>
-<h2 id="POP3-IMAP（邮件接收协议）"><a href="#POP3-IMAP（邮件接收协议）" class="headerlink" title="POP3/IMAP（邮件接收协议）"></a>POP3/IMAP（邮件接收协议）</h2><ol>
-<li><p>POP有两种工作方式</p>
-<ul>
-<li><p>删除：每次读取邮件后就删除该邮件</p>
-</li>
-<li><p>保存：读取邮件后继续保存</p>
-</li>
-</ul>
-</li>
-<li><p>IMAP</p>
-<ul>
-<li>客户端和邮箱可以实现同步</li>
-</ul>
-</li>
-</ol>
-<h2 id="FTP（文件传输协议）"><a href="#FTP（文件传输协议）" class="headerlink" title="FTP（文件传输协议）"></a>FTP（文件传输协议）</h2><p>​    基于TCP协议，在通信主机间使用两条TCP连接，一条用于传输控制信息、一条用于数据传送，提高了FTP的效率。</p>
-<h2 id="Telnet（远程登陆协议）"><a href="#Telnet（远程登陆协议）" class="headerlink" title="Telnet（远程登陆协议）"></a>Telnet（远程登陆协议）</h2><p>​    基于TCP，但所有数据明文发送，有安全问题。</p>
-<h2 id="SSH（安全网络传输协议）"><a href="#SSH（安全网络传输协议）" class="headerlink" title="SSH（安全网络传输协议）"></a>SSH（安全网络传输协议）</h2><p>​    对传输数据进行加密以保证数据安全性，可有效防止远程管理中的信息泄露问题。</p>
-<h1 id="二、运输层"><a href="#二、运输层" class="headerlink" title="二、运输层"></a>二、运输层</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="报文首部"><a href="#报文首部" class="headerlink" title="报文首部"></a>报文首部</h3><table>
-<thead>
-<tr>
-<th align="center">名称</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">源端口和目的端口</td>
-<td></td>
-</tr>
-<tr>
-<td align="center">序号（seq）</td>
-<td>每个字节都按顺序编号</td>
-</tr>
-<tr>
-<td align="center">确认号</td>
-<td></td>
-</tr>
-<tr>
-<td align="center">数据偏移</td>
-<td></td>
-</tr>
-<tr>
-<td align="center">紧急URG</td>
-<td>当URG=1，当前字段有效</td>
-</tr>
-<tr>
-<td align="center">确认ACK</td>
-<td>仅ACK=1，当前字段有效；连接建立后，所有报文传输ACK=1</td>
-</tr>
-<tr>
-<td align="center">同步SYN</td>
-<td>SYN=1，ACK=0是连接请求报文；同意连接后，SYN=1，ACK=1</td>
-</tr>
-<tr>
-<td align="center">终止FIN</td>
-<td>FIN=1，发送方数据发送完毕，要求释放</td>
-</tr>
-</tbody></table>
-<h3 id="三次握手、四次挥手"><a href="#三次握手、四次挥手" class="headerlink" title="三次握手、四次挥手"></a>三次握手、四次挥手</h3><pre class="mermaid">sequenceDiagram
-    客户端->>服务器: SYN=1 seq=x(随机选择)
-    服务器->>客户端: SYN=1 ACK=1 seq=y ack=x+1
-    客户端->>服务器: ACK=1 seq=x+1 ack=y+1</pre>
-
-<h4 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h4><p>​    三次握手的目的在于建立可靠的通信传输，双方都必须确认自己和对方的发送和接受是正常的。</p>
-<p>​    两次握手：客户发送请求、seq=client_isn；服务器确认客户发来的seq，自己的seq=server_isn。这样只对客户的起始序列号达成同步，对服务器的起始序列号没有同步，无法达成可靠连接。</p>
-<p>​    四次握手：客户发送请求、seq=client_isn；服务器确认客户seq，并发送ack=client_isn+1；服务器发送seq=server_isn；客户端确认服务器seq，发送ack=server_isn+1。其中23步可以合并，提高连接效率和速度。</p>
-<h4 id="二次握手回传SYN的意义"><a href="#二次握手回传SYN的意义" class="headerlink" title="二次握手回传SYN的意义"></a>二次握手回传SYN的意义</h4><p>​    ACK是为了告知发送方，你的发送是正常的，回传SYN是为了确定自己的发送没问题。</p>
-<h4 id="为什么是四次挥手？"><a href="#为什么是四次挥手？" class="headerlink" title="为什么是四次挥手？"></a>为什么是四次挥手？</h4><pre class="mermaid">sequenceDiagram
-    客户端->>服务器: FIN(1)
-    服务器->>客户端: ACK(2)
-    服务器->>客户端: FIN(3)
-    客户端->>服务器: ACK(4)</pre>
-
-<p>​    (1)客户端进入FIN_WAIT_1状态</p>
-<p>​    (2)服务器进入CLOSE_WAIT状态，客户端接收到ACK后进入FIN_WAIT_2状态    </p>
-<p>​    (3)服务器进入LAST_ACK状态</p>
-<p>​    (4)客户端进入TIME_WAIT状态，服务器接收到ACK后进入CLOSED状态，完成关闭；客户端在<strong>2MSL</strong>后进入CLOSED状态完成关闭。</p>
-<blockquote>
-<p>为什么TIME_WAIT等2MSL？</p>
-<p>MSL是报文最大生存时。</p>
-<p>为保证客户端发送的最后一个ACK能够到达服务器端，因为ACK可能会丢失（接收到ACK后还要发送FIN）；使得本次TCP连接中的所有报文小时。</p>
-</blockquote>
-<p>​    在握手时，服务器将ACK和SYN放在一个报文里交给了客户端；但关闭连接时，对方首先发过来一个FIN，表示不再发送数据，但可以继续接受数据，服务器可以选择发送数据或直接关闭，故ACK和FIN是分开发送的。</p>
-<h4 id="如果已经建立了连接，但是客户端突然出现故障了怎么办？"><a href="#如果已经建立了连接，但是客户端突然出现故障了怎么办？" class="headerlink" title="如果已经建立了连接，但是客户端突然出现故障了怎么办？"></a>如果已经建立了连接，但是客户端突然出现故障了怎么办？</h4><p>​    TCP设置有保活计时器，服务器每接收到一个客户端的请求是，该计时器都会复位，到时间后，每隔75s向客户端发送探测报文段，若连发10个都毫无反应，服务器就关闭连接。</p>
-<h3 id="TCP如何保证可靠传输"><a href="#TCP如何保证可靠传输" class="headerlink" title="TCP如何保证可靠传输"></a>TCP如何保证可靠传输</h3><ol>
-<li>应用数据被分割成 TCP 认为最适合发送的数据块。</li>
-<li>TCP 给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。</li>
-<li><strong>校验和：</strong> TCP 将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP 将丢弃这个报文段和不确认收到此报文段。</li>
-<li>TCP 的接收端会丢弃重复的数据。</li>
-<li><strong>流量控制：</strong> TCP 连接的每一方都有固定大小的缓冲空间，TCP 的接收端只允许发送端发送接收端缓冲区能接纳的数据。当接收方来不及处理发送方的数据，能提示发送方降低发送的速率，防止包丢失。TCP 使用的流量控制协议是可变大小的滑动窗口协议。 （TCP 利用滑动窗口实现流量控制）</li>
-<li><strong>拥塞控制：</strong> 当网络拥塞时，减少数据的发送。</li>
-<li><strong>ARQ 协议：</strong> 也是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，等待对方确认。在收到确认后再发下一个分组。</li>
-<li><strong>超时重传：</strong> 当 TCP 发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段。</li>
-</ol>
-<h3 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h3><ol>
-<li>TCP面向连接，UDP无连接</li>
-<li>TCP提供可靠数据传输，UDP不保证可靠交付</li>
-<li>TCP以字节流形式传输，UDP用数据报文段传输，且不提供拥塞控制</li>
-<li>TCP首部开销20个字节，UDP8个字节</li>
-<li>TCP不提供广播或多播，只能实现点到点，UDP支持一对一，一对多，多对一，多对多的交互通信</li>
-<li>TCP一般用于文件传输、发送邮件、远程登陆等，UDP在即时通信方面有优势。</li>
-</ol>
-<h3 id="拥塞控制的算法"><a href="#拥塞控制的算法" class="headerlink" title="拥塞控制的算法"></a>拥塞控制的算法</h3><blockquote>
-<p>为了防止过多的数据进入网络，使得路由器/链路不致过载</p>
-</blockquote>
-<p>TCP发送方要维持一个拥塞窗口（cwnd）的动态变量，发送窗口取值为cwnd和接收方的接收窗口较小的一个。</p>
-<ul>
-<li>慢开始：由小到大逐渐增大发送窗口，每一轮cwnd加倍</li>
-<li>拥塞避免：拥塞窗口 cwnd 缓慢增大，即每经过一个往返时间 RTT 就把发送放的 cwnd 加 1</li>
-<li>快重传和快恢复：如果接收机接收到一个不按顺序的数据段，它会立即给发送机发送一个重复确认。如果发送机接收到三个重复确认，它会假定确认件指出的数据段丢失了，并立即重传这些丢失的数据段。有了 FRR，就不会因为重传时要求的暂停被耽误。</li>
-</ul>
-
+          <p>面试常问应用层和运输层，搞清就好</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/25/220324-1/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -715,7 +467,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-24 02:54:53" itemprop="dateModified" datetime="2022-03-24T02:54:53Z">2022-03-24</time>
+                <time title="修改时间：2022-04-13 13:56:49" itemprop="dateModified" datetime="2022-04-13T13:56:49Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -738,91 +490,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Redis相关</p>
+          <p>Redis学习</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/03/22/220322/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/21/220321/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Au revoir">
-      <meta itemprop="description" content="日月逝矣，时不我待">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Immortalfires">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/21/220321/" class="post-title-link" itemprop="url">剑指offer（九）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-21 13:38:34" itemprop="dateCreated datePublished" datetime="2022-03-21T13:38:34Z">2022-03-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-22 01:38:46" itemprop="dateModified" datetime="2022-03-22T01:38:46Z">2022-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>依旧是动态规划（简单）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/21/220321/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -927,7 +598,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/17/220317/">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/10/220110/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -941,7 +612,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/17/220317/" class="post-title-link" itemprop="url">剑指offer（八）</a>
+            <a href="/2022/01/10/220110/" class="post-title-link" itemprop="url">计算机网络</a>
         </h2>
 
         <div class="post-meta">
@@ -951,14 +622,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-17 11:21:22" itemprop="dateCreated datePublished" datetime="2022-03-17T11:21:22Z">2022-03-17</time>
+              <time title="创建时间：2022-01-10 09:51:09" itemprop="dateCreated datePublished" datetime="2022-01-10T09:51:09Z">2022-01-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-24 13:10:37" itemprop="dateModified" datetime="2022-03-24T13:10:37Z">2022-03-24</time>
+                <time title="修改时间：2022-03-24 02:56:24" itemprop="dateModified" datetime="2022-03-24T02:56:24Z">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -966,7 +637,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
                 </span>
             </span>
 
@@ -981,10 +652,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>斐波那契数列，青蛙跳台阶，股票最大利润</p>
+          <p>看《自顶向下》的整理~~~可能后面还会看谢希仁的教材，《自顶向下》没讲到物理层</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/17/220317/">
+              <a class="btn" href="/2022/01/10/220110/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1008,7 +679,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/17/220316/">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/09/220109/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1022,7 +693,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/17/220316/" class="post-title-link" itemprop="url">剑指offer（七）</a>
+            <a href="/2022/01/09/220109/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -1032,14 +703,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-16 22:37:57" itemprop="dateCreated datePublished" datetime="2022-03-16T22:37:57Z">2022-03-16</time>
+              <time title="创建时间：2022-01-09 11:23:27" itemprop="dateCreated datePublished" datetime="2022-01-09T11:23:27Z">2022-01-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 05:41:28" itemprop="dateModified" datetime="2022-03-21T05:41:28Z">2022-03-21</time>
+                <time title="修改时间：2022-04-13 13:59:59" itemprop="dateModified" datetime="2022-04-13T13:59:59Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1047,7 +718,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Java基础知识复习</span></a>
                 </span>
             </span>
 
@@ -1062,10 +733,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>二叉树的镜像，对称二叉树，树的子结构（搜索与回溯）</p>
+          <p>JVM相关知识（必看，可以看看周志明《深入理解Java虚拟机》）</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/17/220316/">
+              <a class="btn" href="/2022/01/09/220109/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1089,7 +760,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/15/220315/">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/09/220108/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1103,7 +774,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/15/220315/" class="post-title-link" itemprop="url">剑指offer（六）</a>
+            <a href="/2022/01/09/220108/" class="post-title-link" itemprop="url">Java基础(四)</a>
         </h2>
 
         <div class="post-meta">
@@ -1113,14 +784,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-15 09:20:32" itemprop="dateCreated datePublished" datetime="2022-03-15T09:20:32Z">2022-03-15</time>
+              <time title="创建时间：2022-01-08 22:59:11" itemprop="dateCreated datePublished" datetime="2022-01-08T22:59:11Z">2022-01-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 05:41:16" itemprop="dateModified" datetime="2022-03-21T05:41:16Z">2022-03-21</time>
+                <time title="修改时间：2022-04-13 13:58:29" itemprop="dateModified" datetime="2022-04-13T13:58:29Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1128,7 +799,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Java基础知识复习</span></a>
                 </span>
             </span>
 
@@ -1143,10 +814,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>从上到下打印二叉树（搜索与回溯）</p>
+          <p>多线程相关知识（必看，其实还少很多内容，春招结束后补）</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/15/220315/">
+              <a class="btn" href="/2022/01/09/220108/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1170,7 +841,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/03/14/220314/">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/07/220106/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1184,7 +855,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/14/220314/" class="post-title-link" itemprop="url">剑指Offer（五）</a>
+            <a href="/2022/01/07/220106/" class="post-title-link" itemprop="url">Java基础(三)</a>
         </h2>
 
         <div class="post-meta">
@@ -1194,14 +865,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-14 10:11:46" itemprop="dateCreated datePublished" datetime="2022-03-14T10:11:46Z">2022-03-14</time>
+              <time title="创建时间：2022-01-06 20:59:01" itemprop="dateCreated datePublished" datetime="2022-01-06T20:59:01Z">2022-01-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 05:41:06" itemprop="dateModified" datetime="2022-03-21T05:41:06Z">2022-03-21</time>
+                <time title="修改时间：2022-04-13 13:57:51" itemprop="dateModified" datetime="2022-04-13T13:57:51Z">2022-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1209,7 +880,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Java基础知识复习</span></a>
                 </span>
             </span>
 
@@ -1224,10 +895,91 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>查找算法（中等）</p>
+          <p>IO相关知识（面试不常问）</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/14/220314/">
+              <a class="btn" href="/2022/01/07/220106/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://immortalfires.github.io/2022/01/05/220104/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Au revoir">
+      <meta itemprop="description" content="日月逝矣，时不我待">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Immortalfires">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/05/220104/" class="post-title-link" itemprop="url">Java基础(二)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-04 18:59:01" itemprop="dateCreated datePublished" datetime="2022-01-04T18:59:01Z">2022-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-13 13:57:32" itemprop="dateModified" datetime="2022-04-13T13:57:32Z">2022-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Java基础知识复习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Java容器相关知识</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/05/220104/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1250,7 +1002,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1318,20 +1070,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
